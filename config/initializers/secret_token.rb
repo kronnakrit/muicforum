@@ -9,4 +9,17 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-MuicForum::Application.config.secret_key_base = '88bdc413f8815bc61f48dd3528ef576a8523c01c32b95e2ef1545e82bdaa4f7d4ff1dc3188198939cf35c0cc3fb210d039a0253630db5199a6c27d53a32b7e5b'
+require 'securerandom'
+
+def secure_token
+	token_file = Rails.root.join('.secret')
+	if File.exist?(token_file)
+		File.read(token_file).chomp
+	else
+		token = SecureRandom.hex(64)
+		File.write(token_file, token)
+		token
+	end
+end
+
+MuicForum::Application.config.secret_key_base = secure_token
