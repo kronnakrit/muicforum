@@ -1,5 +1,18 @@
 @import "bootstrap";
 
+.navbar-inverse .navbar-inner {
+	background-color: #182ED1;
+	background-image: linear-gradient(to bottom, #990099, #990099);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF222222', endColorstr='#FF111111', GradientType=0);
+	border-color: #252525;
+}
+
+.navbar-inverse .brand, .navbar-inverse .nav > li > a {
+color: #fff;
+text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
 /* mixins, variables, etc. */
 
 $grayMediumLight: #eaeaea;
@@ -76,6 +89,8 @@ aside {
 }
 
 /* header */
+
+#logoimg { height: 40px; width: 40px; overflow: hidden; float: left; margin-right: 5px; }
 
 #logo {
   float: left;
@@ -177,4 +192,19 @@ footer ul {
 footer ul li {
   float: left;
   margin-left: 10px;
+}
+
+/* Users index */
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-top: 1px solid $grayLighter;
+    &:last-child {
+      border-bottom: 1px solid $grayLighter;
+    }
+  }
 }

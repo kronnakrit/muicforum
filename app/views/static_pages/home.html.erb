@@ -1,11 +1,9 @@
-<div class="center hero-unit">
-  <h1>Welcome to the MUIC</h1>
-
-  <h2>
-    This website is available only for Mahidol University Internation College students.
-  </h2>
-
-  <%= link_to "Sign up now!", '#', class: "btn btn-large btn-primary" %>
-</div>
-
-<%= link_to image_tag("mahidol_logo.png", alt: "Mahidol University Internation College"),  'static_pages/home' %>
+<% if !signed_in? %>
+	<div class="center hero-unit">
+	  <h1>Welcome to the MUIC</h1>
+	  <h2>
+	    This website is available only for Mahidol University Internation College students.
+	  </h2>
+	  <%= link_to "Sign up now!", '#', class: "btn btn-large btn-primary" %>
+	</div>
+ <% end %>

@@ -1,19 +1,25 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
     <div class="container">
-      <%= link_to "INTER", root_path, id: "logo" %>
+    	<div id="logoimg">
+    		<%= link_to image_tag("mahidol_logo.png", alt: "Mahidol University Internation College"),  root_path %>
+    	</div>
+      <%= link_to "MUIC", root_path, id: "logo" %>
       <nav>
         <ul class="nav pull-right">
           <li><%= link_to "Home", root_path %></li>
           <li><%= link_to "Help", help_path %></li>
           <% if signed_in? %>
+          	<!-- admin only.. need to put if only admin later !!-->
+          	<li><%= link_to "Users", users_path %></li>
+          	<!-- admin only.. need to put if only admin later !!-->
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Account <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
                 <li><%= link_to "Profile", current_user %></li>
-                <li><%= link_to "Settings", '#' %></li>
+                <li><%= link_to "Settings", edit_user_path(current_user) %></li>
                 <li class="divider"></li>
                 <li>
                   <%= link_to "Sign out", signout_path, method: "delete" %>
