@@ -11,7 +11,9 @@
           <li><%= link_to "Help", help_path %></li>
           <% if signed_in? %>
           	<!-- admin only.. need to put if only admin later !!-->
-          	<li><%= link_to "Users", users_path %></li>
+          	<% if current_user.admin? %>
+          		<li><%= link_to "Users", users_path %></li>
+          	<% end %>
           	<!-- admin only.. need to put if only admin later !!-->
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
