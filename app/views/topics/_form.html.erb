@@ -1,0 +1,28 @@
+<%= form_for(@topic, :url => board_topics_path) do |f| %>
+  <% if @topic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
+
+      <ul>
+      <% @topic.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label "Topic" %>
+    <%= f.text_field :title %>
+  </div>
+ 
+  <div class="field">
+    <%= f.label "Content" %>
+    <%= f.text_area(:subtitle, :size => "60x10")%>
+  </div>
+  
+ 
+  <div class="actions" style="text-align: center;">
+    <%= f.submit :as => "Create Post", class: "btn btn-primary" %>
+  </div>
+<% end %>

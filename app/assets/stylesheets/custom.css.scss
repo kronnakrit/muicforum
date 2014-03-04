@@ -1,5 +1,74 @@
 @import "bootstrap";
 
+.timestamp {
+  color: $grayLight;
+  text-align: left;
+}
+
+.table {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+a#post-link:link {
+	color: #000000; 
+	text-decoration: none; 
+}
+a#post-link:active {
+	color: #0000ff; 
+	text-decoration: none; 
+}
+a#post-link:visited {
+	color: #1f56b2; 
+	text-decoration: none; 
+}
+a#post-link:hover {
+	color: #ff0000; 
+	text-decoration: underline; 
+}
+
+#post-link{
+	font-family: inherit;
+	line-height: 20px;
+	font-size: 1.1em;
+
+}
+
+#user-name-post-index{
+	font-size: 0.7em;
+	color: #BDBDBD;
+	font-family: inherit;
+
+}
+
+.container-post-new-message{
+	margin-bottom: 10px;
+}
+
+.subtitle-body{
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 20px;
+	color: #B8ADAD;
+}
+
+.board-container{
+	background-color: #F0F0F0;
+	border-radius: 6px;
+	padding-bottom: 10px;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 1px;
+	margin-bottom: 20px;
+}
+a.fill-div{
+		display: block;
+		height: 100%;
+		width: 100%;
+		text-decoration: none;
+
+}
+
 .navbar-inverse .navbar-inner {
 	background-color: #182ED1;
 	background-image: linear-gradient(to bottom, #990099, #990099);
@@ -9,8 +78,8 @@
 }
 
 .navbar-inverse .brand, .navbar-inverse .nav > li > a {
-color: #fff;
-text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	color: #fff;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 
 /* mixins, variables, etc. */

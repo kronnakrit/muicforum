@@ -1,0 +1,41 @@
+<h1 id="page_title"><%= @board.title %></h1>
+<p id="notice"><%= notice %></p>
+<ol class="breadcrumb">
+  <li><%= link_to 'Home', boards_path %></li> /
+  <li><%= link_to @board.title, @board %></li>
+</ol>
+<div class="container-post-new-message">
+	<%= link_to 'Post New Message', new_board_topic_url(@board), class: "btn btn-primary"  %>
+</div> 
+<table class = "table table-striped table-hover">
+  <tr>
+    <th style="width: 650px;">Post / Author</th>
+    <th style="width: 100px;">Last Reply</th>
+    <th>Number of Replies</th>
+  </tr>
+<% @topics.each do |topic| %>
+  <tr>
+    <td>
+      <div id="post-link"><%= link_to topic.title, board_topic_path(:board_id => @board, :id =>  topic), id: "post-link"%></div>
+      <div id="user-name-post-index"><span>by <%=  topic.user.name %></span></div>
+    </td>
+    <td>
+      <% comment = topic.comments.last %>
+      <% if comment%>
+      	<span class="timestamp">
+    		<%= comment.created_at.time.localtime.to_formatted_s(:db) %>
+  		</span>
+      <% else %>
+      	<span class="timestamp">
+    	 	<%= topic.created_at.time.localtime.to_formatted_s(:db) %>
+  		</span>
+      <% end %>
+
+    </td>
+    <td>
+      <%=  topic.comments.count%>
+    </td>
+  </tr>
+<% end %>
+</table> 
+<%= link_to 'Post New Message', new_board_topic_url(@board), class: "btn btn-primary"  %>

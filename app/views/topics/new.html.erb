@@ -1,0 +1,9 @@
+<h1 id="page_title">New Topic</h1>
+<ol class="breadcrumb">
+  <li><%= link_to 'Home', boards_path %></li> /
+  <li><%= link_to @board.title, @board %></li> /
+  <li>New Topic</li> 
+</ol>
+ 
+<%= render 'form' %>
+ 

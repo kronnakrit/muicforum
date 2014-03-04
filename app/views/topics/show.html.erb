@@ -1,0 +1,33 @@
+<%= link_to @topic.board.title, @topic.board%>
+<p id="notice"><%= notice %></p>
+ 
+<table>
+  <tr>
+    <th colspan="2"><%= @topic.title %></th>
+  </tr>
+  <% @topic.comments.each do |comment| %>
+  <tr>
+    <td style="width:25%;">
+      <%= link_to comment.user.name, comment.user %> <br />
+      Posted At <br />
+      <%= comment.created_at%>
+    </td>
+    <td>
+      <p><%=comment.content%></p>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<%= form_for([@topic, @topic.comments.build]) do |f| %>
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </div>
+   <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+

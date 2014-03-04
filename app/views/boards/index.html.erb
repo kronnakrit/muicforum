@@ -1,0 +1,32 @@
+<% if !signed_in? %>
+	<div class="center hero-unit">
+	  <h1>Welcome to the MUIC</h1>
+	  <h2>
+	    This website is available only for Mahidol University Internation College students.
+	  </h2>
+	  <%= link_to "Sign up now!", new_user_url, class: "btn btn-large btn-primary" %>
+	</div>
+<% else %>
+		<ol class="breadcrumb">
+ 			 <li><%= link_to 'Home', boards_path %></li>
+		</ol>
+		<div class="container">
+		  <% @boards.each do |board| %>
+		  <div class="board-container" >
+			  <div class="panel panel-default">
+				  <div class="panel-heading">
+				    <h3 class="panel-title"><%= link_to board.title, board, class: "fill-div" %></h3>
+				  </div>
+				  <div class="subtitle-body">
+				    <%= board.subtitle %>
+	 			  </div>
+			  </div>
+			 </div>
+		  <% end %>
+		</div>
+	  
+<% end %>
+
+
+
+
