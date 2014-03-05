@@ -1,5 +1,36 @@
 @import "bootstrap";
 
+.panel-footer{
+	border-top: 1px solid #bbb;
+}
+
+.date{
+	text-align: right;
+	width: 10em;
+	float: right;
+	color: #bbb;
+	font-family: inherit;
+}
+
+#username{
+	text-align: right;
+	font-family: inherit;
+	color: #Bbb;
+}
+
+.panel-heading{
+	border-bottom: 1px solid #bbb;
+}
+
+.panel-default{
+	padding: 10px;
+	border: 1px solid #bbb;
+	border-radius: 6px;
+	margin-bottom: 10px;
+	background-color: #F7F8FF;
+
+}
+
 .timestamp {
   color: $grayLight;
   text-align: left;

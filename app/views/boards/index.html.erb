@@ -12,8 +12,8 @@
 		</ol>
 		<div class="container">
 		  <% @boards.each do |board| %>
-		  <div class="board-container" >
-			  <div class="panel panel-default">
+		  <div class="board-container" style="padding: 0px;" >
+			  <div class="panel panel-default" style="margin-bottom: 0px;">
 				  <div class="panel-heading">
 				    <h3 class="panel-title"><%= link_to board.title, board, class: "fill-div" %></h3>
 				  </div>
