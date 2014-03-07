@@ -24,22 +24,18 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @topic = Topic.find(params[:topic_id])
-
   	@comment = Comment.new(comment_params)
-
   	@comment.topic_id = @topic.id
   	@comment.user_id = current_user.id
     
 
-    respond_to do |format|
       if @comment.save
-        format.html { redirect_to topic_path(@topic), notice: 'Comment was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @comment }
+      	flash[:success] = "Comment was successfuly created."
+        redirect_to board_topic_path(@topic.board.id, @topic.id)
       else
         format.html { render action: 'new' }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
-    end
   end
 
   # PATCH/PUT /comments/1
@@ -59,9 +55,12 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
+  	@topic = Topic.find(params[:topic_id])
+  	@comment.topic = @topic
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to comments_url }
+      flash[:success] = "Comment was successfuly deleted."
+      format.html { redirect_to board_topic_path(@topic.board.id, @topic.id) }
       format.json { head :no_content }
     end
   end
@@ -76,4 +75,6 @@ class CommentsController < ApplicationController
     def comment_params
       params.require(:comment).permit(:content, :user_id, :topic_id)
     end
+
+ 
 end

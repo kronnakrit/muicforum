@@ -59,11 +59,10 @@ class TopicsController < ApplicationController
   # DELETE /topics/1
   # DELETE /topics/1.json
   def destroy
+  	@board = @topic.board
     @topic.destroy
-    respond_to do |format|
-      format.html { redirect_to topics_url }
-      format.json { head :no_content }
-    end
+    flash[:success] = "Topic was successfuly deleted."
+    redirect_to :controller => 'boards', :action => 'show', :id => @board.id 
   end
 
 

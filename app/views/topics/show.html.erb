@@ -5,24 +5,57 @@
 </ol><p id="notice"><%= notice %></p>
  
 <div class="panel panel-default">
-  <div class="date right"><%= @topic.created_at.time.localtime.to_formatted_s(:db)%></div>
-  <div class="panel-heading">
-    <div><h3 class="panel-title"><%= @topic.title %></h3>
+  	<div class="panel-heading">
+	    <h3 class="panel-title"><%= @topic.title %>
+			<div class="delete-post-btn">
+			    <% if(current_user.id == @topic.user.id || current_user.admin?) %>
+					<div class="btn-group" style="float: right;">
+					   	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" >
+    						<span class="caret"></span>
+  						</button>		
+					  <ul class="dropdown-menu" role="menu">
+					    <li><%= link_to "Edit", '#' %></li>
+					    <li><%= link_to "Delete",  @topic, method: :delete,
+					                                  data: { confirm: "Are you sure?" } %></li>
+					  </ul>
+					</li>
+				<% end %>
+			</div>
+		</h3>
+ 	 </div>
+  	<div class="panel-body" style="margin-top: 1em; margin-bottom: 0.5em;">
+    	<%= @topic.subtitle %>
+  	</div>
+    <div class="panel-footer">
+	    <div style="margin-top: 5px;">
+			by <%= link_to @topic.user.name, @topic.user %> <br />
+		   	<div style="color: #bbb;">Posted at <%= @topic.created_at.time.localtime.to_formatted_s(:db)%></div>
+	    </div>
     </div>
-    <div id="username">by <%= link_to @topic.user.name, @topic.user %></div>
-  </div>
-  <div class="panel-body" style="margin-top: 1.5em;">
-    <%= @topic.subtitle %>
-  </div>
 </div>
 <% @topic.comments.each do |comment| %>
 	<div class="panel panel-default">
-	  <div class="panel-body" style="margin-bottom: 0.8em;">
-	    <%=comment.content%><br/>
-	  </div>
-	  <div class="panel-footer">
+
+		<% if(current_user.id == comment.user.id || current_user.admin?) %>
+					<div class="btn-group" style="float: right;">
+					   	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" >
+    						<span class="caret"></span>
+  						</button>		
+					 	<ul class="dropdown-menu" role="menu">
+						    <li><%= link_to "Edit", '#' %></li>
+						    <li><%= link_to "Delete", [@topic, comment], method: :delete,
+				                          data: { confirm: "You sure?" }%></li>
+					  	</ul>
+					</div>
+				<% end %>
+		
+	 	<div class="panel-body" style="margin-bottom: 1em; margin-top: 1em">
+        	<%=comment.content%>
+        	<br/>
+	  	</div>
+	  	<div class="panel-footer">
 	  	<div style="margin-top: 5px;">
-		  	<%= link_to comment.user.name, comment.user %> <br/>
+		  	by <%= link_to comment.user.name, comment.user %> <br/>
 		    <div style="color: #bbb;">Posted At <%= comment.created_at.time.localtime.to_formatted_s(:db)%></div>
 	    </div>
 	  </div>
@@ -38,6 +71,21 @@
     <%= f.submit class: "btn btn-primary"%>
   </div>
 <% end %>
+
+
+<!-- This is modal for edit comment-->
+
+<div class="basic-modal-content">	
+	<%= form_for([@topic, @topic.comments.build]) do |f| %>
+  		<div class="field">
+    		<%= f.label 'Edit Comment' %>
+    		<%= f.text_area :content %>
+  		</div>
+   		<div class="actions" style="text-align: center;">
+    		<%= f.submit "Submit", class: "btn btn-primary"%>
+  		</div>
+	<% end %>
+</div>
 
 
 
