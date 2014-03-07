@@ -41,15 +41,13 @@ class CommentsController < ApplicationController
   # PATCH/PUT /comments/1
   # PATCH/PUT /comments/1.json
   def update
-    respond_to do |format|
+  	@topic = Topic.find(params[:topic_id])
       if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
-        format.json { head :no_content }
+      	flash[:success] = "Comment was successfuly created."
+      	redirect_to board_topic_path(@topic.board.id, @topic.id)
       else
-        format.html { render action: 'edit' }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      	redirect_to board_topic_path(@topic.board.id, @topic.id)
       end
-    end
   end
 
   # DELETE /comments/1

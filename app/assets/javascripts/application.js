@@ -15,3 +15,12 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
+
+
+$(document).ready(function() {
+	$('#basic-modal .basic').click(function (e) {
+		$('#basic-modal-content').modal();
+
+		return false;
+	});
+});

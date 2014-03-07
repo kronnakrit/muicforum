@@ -35,7 +35,7 @@ class TopicsController < ApplicationController
     @topic.board = @board
 
     if current_user && @topic.save
-  		flash[:success] = "Topic was successfuly updated."
+  		flash[:success] = "Topic was successfuly created."
   		redirect_to :controller => 'topics', :action => 'show', :id => @topic.id 
   	else
   		render action: "new"
@@ -45,15 +45,12 @@ class TopicsController < ApplicationController
   # PATCH/PUT /topics/1
   # PATCH/PUT /topics/1.json
   def update
-    respond_to do |format|
       if @topic.update(topic_params)
-        format.html { redirect_to @topic, notice: 'Topic was successfully updated.' }
-        format.json { head :no_content }
+      	flash[:success] = "Topic was successfuly updated."
+      	redirect_to board_topic_path(@topic.board.id, @topic.id)
       else
-        format.html { render action: 'edit' }
-        format.json { render json: @topic.errors, status: :unprocessable_entity }
+
       end
-    end
   end
 
   # DELETE /topics/1

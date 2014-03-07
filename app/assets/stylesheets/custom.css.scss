@@ -1,7 +1,10 @@
 @import "bootstrap";
 
-#basic-modal-content {display:none;}
-
+#comment{
+	float: left; 
+	color: #a1a1a1; 
+	font-family: inherit;
+}
 
 .table th, .table td {
 	padding: 8px;
