@@ -10,6 +10,7 @@ gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 gem 'jquery-ui-rails'
 gem 'jquery-rails', '3.0.4'
+gem 'font-awesome-sass'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'

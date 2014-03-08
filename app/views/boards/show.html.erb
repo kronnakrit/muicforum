@@ -5,11 +5,13 @@
   <li><%= link_to @board.title, @board %></li>
 </ol>
 <div class="container-post-new-message">
-	<%= link_to 'Post New Message', new_board_topic_url(@board), class: "btn btn-primary"  %>
+	<%= link_to new_board_topic_url(@board), class: "btn btn-primary" do %>
+		<i class="icon-plus-sign icon-white"></i> Create Topic 
+	<% end %>
 </div> 
 <table class = "table">
   <tr>
-    <th style="width: 650px;">Post / Author</th>
+    <th style="width: 650px;">Topic / Author</th>
     <th style="width: 100px;">Last Reply</th>
     <th>Number of Replies</th>
   </tr>
@@ -17,7 +19,7 @@
   <tr>
     <td>
       <div id="post-link"><%= link_to topic.title, board_topic_path(:board_id => @board, :id =>  topic), id: "post-link"%></div>
-      <div id="user-name-post-index"><span>by <%=  topic.user.name %></span></div>
+      <div id="user-name-post-index"><span>by <%= link_to topic.user.name, topic.user %></span></div>
     </td>
     <td>
       <% comment = topic.comments.last %>
@@ -38,4 +40,6 @@
   </tr>
 <% end %>
 </table> 
-<%= link_to 'Post New Message', new_board_topic_url(@board), class: "btn btn-primary"  %>
+<%= link_to new_board_topic_url(@board), class: "btn btn-primary" do %>
+		<i class="icon-plus-sign icon-white"></i> Create Topic 
+	<% end %>

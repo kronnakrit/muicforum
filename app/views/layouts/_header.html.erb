@@ -7,7 +7,11 @@
       <%= link_to "MUIC", root_path, id: "logo" %>
       <nav>
         <ul class="nav pull-right">
-          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to root_path do %>
+				<i class="icon-home icon-white"></i> Home
+			<% end %>
+          </li>
+          <li><%= link_to "Tags", '#' %></li>
           <li><%= link_to "Help", help_path %></li>
           <% if signed_in? %>
           	<!-- admin only.. need to put if only admin later !!-->
@@ -17,7 +21,7 @@
           	<!-- admin only.. need to put if only admin later !!-->
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                Account <b class="caret"></b>
+              		Account <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
                 <li><%= link_to "Profile", current_user %></li>
