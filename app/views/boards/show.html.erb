@@ -9,6 +9,11 @@
 		<i class="icon-plus-sign icon-white"></i> Create Topic 
 	<% end %>
 </div> 
+<% form_tag(board_topics_path(@board , @topic), :method => 'get', id: "search-form") do %>
+		<%= text_field_tag :search, params[:search], placeholder: "Search Topic" %>
+		<%= submit_tag "Search", :title => nil %>
+	<%= submit_tag "Search" %>
+<% end %>
 <table class = "table">
   <tr>
     <th style="width: 650px;">Topic / Author</th>

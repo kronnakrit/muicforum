@@ -1,6 +1,25 @@
-<h1 id="page_title">New conversation</h1>
-<%= link_to @board.title, @board %>
- 
-<%= render 'form' %>
- 
-<%= link_to @board.title, @board %>
+<% @topics.each do |topic| %>
+  <tr>
+    <td>
+      <div id="post-link"><%= link_to topic.title, board_topic_path(topic.board, topic), id: "post-link"%></div>
+      <div id="user-name-post-index"><span>by <%= link_to topic.user.name, topic.user %></span></div>
+    </td>
+    <td>
+      <% comment = topic.comments.last %>
+      <% if comment%>
+      	<span class="timestamp">
+    		<%= comment.created_at.time.localtime.to_formatted_s(:db) %>
+  		</span>
+      <% else %>
+      	<span class="timestamp">
+    	 	<%= topic.created_at.time.localtime.to_formatted_s(:db) %>
+  		</span>
+      <% end %>
+
+    </td>
+    <td>
+      <%=  topic.comments.count%>
+    </td>
+  </tr>
+<% end %>
+</table> 

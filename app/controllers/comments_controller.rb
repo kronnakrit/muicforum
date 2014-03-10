@@ -27,9 +27,9 @@ class CommentsController < ApplicationController
   	@comment = Comment.new(comment_params)
   	@comment.topic_id = @topic.id
   	@comment.user_id = current_user.id
-    
 
       if @comment.save
+      	@topic.update_attributes(:updated_at => @comment.updated_at)
       	flash[:success] = "Comment was successfuly created."
         redirect_to board_topic_path(@topic.board.id, @topic.id)
       else

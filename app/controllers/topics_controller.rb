@@ -4,8 +4,12 @@ class TopicsController < ApplicationController
   # GET /topics
   # GET /topics.json
   def index
-    @topics = Topic.all
-  end
+    if params[:tag]
+    	@topics = Topic.tagged_with(params[:tag])
+  	else
+    	@topics = Topic.all
+ 	end
+end
 
   # GET /topics/1
   # GET /topics/1.json
