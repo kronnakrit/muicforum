@@ -11,7 +11,7 @@ class BoardsController < ApplicationController
   # GET /boards/1.json
   def show
   	@board = Board.find(params[:id])
-  	@topics = @board.topics.paginate(per_page: 10, page:params[:page])
+  	@topics = @board.topics.paginate(per_page: 20, page:params[:page])
   end
 
   # GET /boards/new

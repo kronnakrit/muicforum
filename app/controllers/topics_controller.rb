@@ -8,8 +8,12 @@ class TopicsController < ApplicationController
   # GET /topics
   # GET /topics.json
   def index
-    if params[:tag]
-    	@topics = Topic.tagged_with(params[:tag]).paginate(per_page: 15, page: params[:page])
+    if(params[:tag] || params[:search])
+    	if(params[:tag])
+    		@topics = Topic.tagged_with(params[:tag]).paginate(per_page: 15, page: params[:page])
+    	else
+    		@topics = Topic.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(:per_page => 5, :page => params[:page])
+    	end
   	else
     	@topics = Topic.paginate(per_page: 15, page: params[:page])
  	end

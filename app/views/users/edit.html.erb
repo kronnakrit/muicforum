@@ -1,27 +1,30 @@
 <% provide(:title, "Edit user") %>
-<h1>Update your profile</h1>
+<div class="container jumbotron" style="padding: 3em; width: 800px; font-size: 14px; padding: 10px;">
 
-<div class="row">
-  <div class="span6 offset3">
-    <%= form_for(@user) do |f| %>
-      <%= render 'shared/error_messages' %>
+	<h1>Update your profile</h1>
 
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+	<div class="form-group" style="margin-left: -60px;">
+	  <div class="col-sm-offset-2 col-sm-10", style="margin-left: 12%;">
+	    <%= form_for(@user) do |f| %>
+	      <%= render 'shared/error_messages' %>
 
-      <%= f.label :email %>
-      <%= f.text_field :email %>
+	      <%= f.label :name %>
+	      <%= f.text_field :name, class:"form-control" %>
 
-      <%= f.label :password %>
-      <%= f.password_field :password %>
+	      <%= f.label :email %>
+	      <%= f.text_field :email, class:"form-control" %>
 
-      <%= f.label :password_confirmation, "Confirm Password" %>
-      <%= f.password_field :password_confirmation %>
+	      <%= f.label :password %>
+	      <%= f.password_field :password, class:"form-control" %>
 
-      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
-    <% end %>
+	      <%= f.label :password_confirmation, "Confirm Password" %>
+	      <%= f.password_field :password_confirmation, class:"form-control" %>
 
-    <%= gravatar_for @user %>
-    <a href="http://gravatar.com/emails">change</a>
-  </div>
+	      <%= f.submit "Save changes", class: "btn btn-primary", style:" width: 150px; margin-left: 37%;"%>
+	    <% end %>
+
+	    <%= gravatar_for @user %>
+	    <a href="http://gravatar.com/emails">change</a>
+	  </div>
+	</div>
 </div>

@@ -12,9 +12,9 @@ class Topic < ActiveRecord::Base
 end
 
 def self.search(search)
-	if search
-		find(:all, :conditions => ['title LIKE ?', "%#{search}%"])
-	else
-		find(:all)
-	end
+	if search  
+    	where('title LIKE ?', "%#{search}%")  
+    else  
+     	scoped  
+  	end  
 end

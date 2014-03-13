@@ -6,7 +6,7 @@
  
 <div class="panel panel-default">
   	<div class="panel-heading" style="background-color: white;">
-	    <h3 class="panel-title" style="font-size: 30px; color: #2c3b63;"><%= @topic.title %>
+	    <h3 class="panel-title" style="font-size: 30px; color: #586996;"><%= @topic.title %>
 			<div class="delete-post-btn">
 			    <% if(current_user.id == @topic.user.id || current_user.admin?) %>
 					<div class="btn-group" style="float: right;">
@@ -86,7 +86,7 @@
 		<%= form_for([@topic, comment]) do |f| %>
 	  		<div class="field">
 	    		<%= f.label 'Edit Comment' %>
-	    		<%= f.text_area :content %>
+	    		<%= f.text_area :content, class:"form-control" %>
 	  		</div>
 	   		<div class="actions" style="text-align: center;">
 	    		<%= f.submit "Submit", class: "btn btn-primary"%>
@@ -103,7 +103,7 @@
 <%= form_for([@topic, @topic.comments.build]) do |f| %>
   <div class="field">
     <%= f.label 'Comment' %>
-    <%= f.text_area :content %>
+    <%= f.text_area :content, class:"form-control" %>
   </div>
    <div class="actions" style="text-align: center;">
     <%= f.submit 'Comment',class: "btn btn-primary"%>
