@@ -1,13 +1,17 @@
 class TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
 
+  def search
+  	@topics = Topic.search(params[:search])
+  end
+
   # GET /topics
   # GET /topics.json
   def index
     if params[:tag]
-    	@topics = Topic.tagged_with(params[:tag])
+    	@topics = Topic.tagged_with(params[:tag]).paginate(per_page: 15, page: params[:page])
   	else
-    	@topics = Topic.all
+    	@topics = Topic.paginate(per_page: 15, page: params[:page])
  	end
 end
 

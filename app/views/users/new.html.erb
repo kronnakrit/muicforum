@@ -1,11 +1,11 @@
 <% provide(:title, 'Sign up') %>
-<div class="container hero-unit" style="padding: 3em; width: 800px; font-size: 14px; padding: 10px;">
-	<h1>Sign up</h1>
-	<div class="row" style="margin-left: -40px;">
-	  <div class="span6 offset3">
+<div class="container jumbotron" style="padding: 3em; width: 800px; font-size: 14px; padding: 10px;">
+	<h1 style="font-family: inherit;">Sign up</h1>
+	<div class="form-group" style="margin-left: -60px;">
+	  <div class="col-sm-offset-2 col-sm-10", style="margin-left: 12%;">
 	    <%= form_for(@user) do |f| %>
 	      <%= render 'fields', f: f %>
-	      <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+	      <%= f.submit "Sign up", class: "btn btn-primary", style:" width: 101px; margin-left: 43%;" %>
 	    <% end %>
 
 	  </div>

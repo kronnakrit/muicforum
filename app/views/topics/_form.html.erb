@@ -13,17 +13,17 @@
 
   <div class="field">
     <%= f.label "Topic" %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class:"form-control" %>
   </div>
 
   	<div class="field">
 	  <%= f.label :keyword_list, "Tags (separated by commas)" %>
-	  <%= f.text_field :keyword_list%>
+	  <%= f.text_field :keyword_list, class:"form-control" %>
 	</div>
  
   <div class="field">
     <%= f.label "Content" %>
-    <%= f.text_area(:subtitle, :size => "60x10")%>
+    <%= f.text_area :subtitle, :size => "60x10", class:"form-control" %>
   </div>
   
   <div class="actions" style="text-align: center;">

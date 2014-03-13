@@ -1,5 +1,39 @@
 @import "bootstrap";
 
+.board{
+	text-align: left;
+	font: 40px bold;
+	font-family: inherit;
+	letter-spacing:1px;
+}
+
+.pagination {
+	display: inline-block;
+	padding-left: 0;
+	margin: 0px 0;
+	border-radius: 4px;
+}
+
+
+
+.tagcontainer{
+	font-family: inherit;
+	background-color: white;
+	vertical-align: middle;
+	margin-left: 10em;
+	margin-right: 10em;
+	text-align: center;
+	padding: 4em;
+	border-radius: 6px;
+}
+
+#tagging{
+	color: #a1a1a1;
+	font-family: inherit;
+	font-size: 13px;
+	margin-top: 4px;
+}
+
 #tag_cloud {
   width: 400px;
   line-height: 1.6em;
@@ -132,7 +166,7 @@
 }
 
 .timestamp {
-  color: $grayLight;
+  color: $gray-light;
   text-align: left;
 }
 
@@ -206,6 +240,7 @@ a#post-link:hover {
 	padding-left: 5px;
 	padding-right: 5px;
 	margin-bottom: 20px;
+	margin-left: -10px;
 }
 a.fill-div{
 		display: block;
@@ -215,7 +250,7 @@ a.fill-div{
 
 }
 
-.navbar-inverse .navbar-inner {
+.navbar-inverse{
 	background-color: #182ED1;
 	background-image: linear-gradient(to bottom, #2c3b63, #2c3b63);
 	background-repat: repeat-x;
@@ -259,9 +294,10 @@ input {
   }
 }
 
+
+
 .field_with_errors {
-  @extend .control-group;
-  @extend .error;
+	@extend .has-error;
 }
 
 /* sidebar */
@@ -269,7 +305,7 @@ input {
 aside {
   section {
     padding: 10px 0;
-    border-top: 1px solid $grayLighter;
+    border-top: 1px solid $gray-lighter;
     &:first-child {
       border: 0;
       padding-top: 0;
@@ -305,7 +341,7 @@ aside {
 
 /* header */
 
-#logoimg { height: 40px; width: 40px; overflow: hidden; float: left; margin-right: 5px; }
+#logoimg { height: 40px; width: 40px; overflow: hidden; float: left; margin-left: 0px; margin-top: -11px; }
 
 #logo {
   float: left;
@@ -314,7 +350,7 @@ aside {
   color: #fff;
   text-transform: uppercase;
   letter-spacing: -1px;
-  padding-top: 5px;
+  padding-top: 8px;
   font-weight: bold;
   line-height: 1;
 }
@@ -418,9 +454,9 @@ footer ul li {
   li {
     overflow: auto;
     padding: 10px 0;
-    border-top: 1px solid $grayLighter;
+    border-top: 1px solid $gray-lighter;
     &:last-child {
-      border-bottom: 1px solid $grayLighter;
+      border-bottom: 1px solid $gray-lighter;
     }
   }
 }
@@ -440,7 +476,7 @@ footer ul li {
   display: block;
 }
 .timestamp {
-  color: $grayLight;
+  color: $gray-light;
 }
 .gravatar {
   float: left;

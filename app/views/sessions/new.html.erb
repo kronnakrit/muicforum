@@ -1,20 +1,24 @@
 <% provide(:title, "Sign in") %>
-<div class="container hero-unit" style="padding: 3em; width: 800px; font-size: 14px; padding: 10px;">
+<div class="container jumbotron" style="padding: 3em; width: 800px; font-size: 14px; padding: 10px;">
 	<h1>Sign in</h1>
-	<div class="row" style="margin-left: -40px;">
-	  <div class="span6 offset3">
+	<div class="form-group" style="margin-left: -60px;">
+	  <div class="col-sm-offset-2 col-sm-10", style="margin-left: 12%;">
 	    <%= form_for(:session, url: sessions_path) do |f| %>
 
-	      <%= f.label :email %>
-	      <%= f.text_field :email %>
+	      	<%= f.label :email, class:"col-sm-2 control-label" %>
+			<div class="col-sm-10">
+				<%= f.text_field :email, class:"form-control" %>
+			</div>
 
-	      <%= f.label :password %>
-	      <%= f.password_field :password %>
+	      	<%= f.label :password, class:"col-sm-2 control-label" %>
+			<div class="col-sm-10">
+				<%= f.password_field :password, class:"form-control" %>
+			</div>
 
-	      <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+	      <%= f.submit "Sign in", class: "btn btn-primary", style:" width: 101px; margin-left: 43%;" %>
 	    <% end %>
 
-	    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+	    <p style="font-size: 14px;">New user? <%= link_to "Sign up now!", signup_path %></p>
 	  </div>
 	</div>
 </div>

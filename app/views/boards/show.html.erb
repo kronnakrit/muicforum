@@ -1,14 +1,18 @@
 <h1 id="page_title"><%= @board.title %></h1>
 <p id="notice"><%= notice %></p>
 <ol class="breadcrumb">
-  <li><%= link_to 'Home', boards_path %></li> /
+  <li><%= link_to 'Home', boards_path %></li>
   <li><%= link_to @board.title, @board %></li>
 </ol>
 <div class="container-post-new-message">
 	<%= link_to new_board_topic_url(@board), class: "btn btn-primary" do %>
-		<i class="icon-plus-sign icon-white"></i> Create Topic 
+		<i class="fa fa-plus-square"></i> Create Topic 
 	<% end %>
-</div> 
+	<div style="margin: 0px; float: right;">
+		<%= will_paginate @topics, renderer: BootstrapPagination::Rails %>
+	</div>
+</div>
+
 <% form_tag(board_topics_path(@board , @topic), :method => 'get', id: "search-form") do %>
 		<%= text_field_tag :search, params[:search], placeholder: "Search Topic" %>
 		<%= submit_tag "Search", :title => nil %>
@@ -16,9 +20,9 @@
 <% end %>
 <table class = "table">
   <tr>
-    <th style="width: 650px;">Topic / Author</th>
+    <th style="width: 650px;"><i class="fa fa-list-ul"></i> Topic / Author</th>
     <th style="width: 100px;">Last Reply</th>
-    <th>Number of Replies</th>
+    <th style="text-align: center;">Number of Replies</th>
   </tr>
 <% @topics.each do |topic| %>
   <tr>
@@ -39,12 +43,15 @@
       <% end %>
 
     </td>
-    <td>
+    <td style="text-align: center;">
       <%=  topic.comments.count%>
     </td>
   </tr>
 <% end %>
 </table> 
+<div style="margin: 0px; float: right;">
+		<%= will_paginate @topics, renderer: BootstrapPagination::Rails %>
+</div>
 <%= link_to new_board_topic_url(@board), class: "btn btn-primary" do %>
-		<i class="icon-plus-sign icon-white"></i> Create Topic 
+		<i class="fa fa-plus-square"></i> Create Topic 
 	<% end %>

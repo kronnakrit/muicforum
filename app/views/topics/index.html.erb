@@ -1,3 +1,12 @@
+<h1 id="page_title"><%= params[:tag] %></h1>
+<p id="notice"><%= notice %></p>
+<table class = "table">
+<%= will_paginate @topics%>
+  <tr>
+    <th style="width: 650px;"><i class="fa fa-list-ul"> Topic / Author</th>
+    <th style="width: 100px;">Last Reply</th>
+    <th>Number of Replies</th>
+  </tr>
 <% @topics.each do |topic| %>
   <tr>
     <td>
@@ -23,3 +32,4 @@
   </tr>
 <% end %>
 </table> 
+<%= will_paginate @topics%>
