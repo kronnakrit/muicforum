@@ -11,8 +11,6 @@
 			 <div class="navbar-brand" style="padding-right: 0px;"><%= link_to image_tag("mahidol_logo.png", alt: "Mahidol University Internation College", id: "logoimg"),  root_path %>
 			 </div>
 	    </div>
-
-	    
 	      	
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
@@ -20,15 +18,17 @@
 			</ul>
 
 
-	      <form class="navbar-form navbar-left" role="search" style="margin-left: 6em;">
+			<div class="navbar-form navbar-left" role="search" style="margin-left: 6em;">
 	        <div class="form-group">
-	        <%= form_tag(topics_search_path, :method => 'get') do %>
-	          <%= text_field_tag :search, params[:search], class:"form-control", placeholder:"Search", style:"width:25em;" %>
-	        </div>
-				<%= submit_tag "Search", :title => nil, class:"btn btn-default", style:"margin-top: -15px; margin-left: 5px; padding: 2px 5px 2px 5px; width: 75px;" %>
-	        <% end %>
-	      </form>
-
+				<%= form_tag url_for(:controller => "topics", :action => 'search'),:method => "get", id: "search-form" do %>
+  					<%= text_field_tag :search, params[:search], placeholder: "Search Topics", class: "form-control", style:"width:25em;" %>
+  			</div>
+	  				<%= button_tag(:name => nil, class: "btn btn-default", style:"margin-top: -15px; margin-left: 5px; padding: 2px 5px 2px 5px; width: 25px;") do %>
+	  				<i class="fa fa-search"></i>
+	  				<%end%>
+				<% end %>
+			</div> 
+	      
 	        <ul class="nav navbar-nav navbar-right">
 	          <li><%= link_to root_path do %>
 					<i class="fa fa-home"></i> Home

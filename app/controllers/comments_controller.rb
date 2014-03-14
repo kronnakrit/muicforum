@@ -33,8 +33,8 @@ class CommentsController < ApplicationController
       	flash[:success] = "Comment was successfuly created."
         redirect_to board_topic_path(@topic.board.id, @topic.id)
       else
-        format.html { render action: 'new' }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+        flash[:warning] = 'Comment is empty.'
+  		redirect_to board_topic_path(@topic.board.id, @topic.id)
       end
   end
 

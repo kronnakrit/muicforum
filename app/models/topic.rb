@@ -9,7 +9,8 @@ class Topic < ActiveRecord::Base
 	validates :user_id, presence: true
 	validates :board_id, presence: true
 	validates :subtitle, presence: true
-end
+
+
 
 def self.search(search)
 	if search  
@@ -17,4 +18,7 @@ def self.search(search)
     else  
      	scoped  
   	end  
+end
+
+
 end

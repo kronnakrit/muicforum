@@ -2,18 +2,16 @@ class TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
 
   def search
-  	@topics = Topic.search(params[:search])
+  	if(params[:search])
+  		@topics = Topic.search(params[:search]).order("updated_at DESC").paginate(per_page: 15, page: params[:page])
+  	end
   end
 
   # GET /topics
   # GET /topics.json
   def index
-    if(params[:tag] || params[:search])
-    	if(params[:tag])
-    		@topics = Topic.tagged_with(params[:tag]).paginate(per_page: 15, page: params[:page])
-    	else
-    		@topics = Topic.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(:per_page => 5, :page => params[:page])
-    	end
+    if(params[:tag])
+    	@topics = Topic.tagged_with(params[:tag]).paginate(per_page: 15, page: params[:page])
   	else
     	@topics = Topic.paginate(per_page: 15, page: params[:page])
  	end

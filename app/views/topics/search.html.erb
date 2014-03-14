@@ -1,5 +1,36 @@
+<h1 id="page_title"><%= params[:search] %></h1>
+<p id="notice"><%= notice %></p>
+<table class = "table">
+<div style="float: right;"><%= will_paginate @topics, renderer: BootstrapPagination::Rails %></div> 
+  <tr>
+    <th style="width: 650px;"><i class="fa fa-list-ul"> Topic / Author</th>
+    <th style="width: 100px;">Last Reply</th>
+    <th>Number of Replies</th>
+  </tr>
 <% @topics.each do |topic| %>
-	
-	topic.title <br />
+  <tr>
+    <td>
+      <div id="post-link"><%= link_to topic.title, board_topic_path(topic.board, topic), id: "post-link"%></div>
+      <div id="user-name-post-index"><span>by <%= link_to topic.user.name, topic.user %></span></div>
+    </td>
+    <td>
+      <% comment = topic.comments.last %>
+      <% if comment%>
+      	<span class="timestamp">
+    		<%= comment.created_at.time.localtime.to_formatted_s(:db) %>
+  		</span>
+      <% else %>
+      	<span class="timestamp">
+    	 	<%= topic.created_at.time.localtime.to_formatted_s(:db) %>
+  		</span>
+      <% end %>
 
+    </td>
+    <td>
+      <%=  topic.comments.count%>
+    </td>
+  </tr>
 <% end %>
+</table> 
+<div style="float: right;"><%= will_paginate @topics, renderer: BootstrapPagination::Rails %></div> 
+<br/>
