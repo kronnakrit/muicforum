@@ -7,6 +7,8 @@ class TopicsController < ApplicationController
   	end
   end
 
+
+
   # GET /topics
   # GET /topics.json
   def index
@@ -25,6 +27,7 @@ end
   	@topic.board = @board
   	@comments = @topic.comments
   end
+
 
   # GET /topics/new
   def new

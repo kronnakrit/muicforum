@@ -34,6 +34,13 @@
     	<%= @topic.subtitle %>
   	</div>
     <div class="panel-footer">
+
+  	    <%= link_to '#' do%>
+			<i class="fa fa-plus-circle fa-3" style="zoom: 3;"></i>
+		<% end %>
+
+
+
 	    <div style="margin-top: 5px;">
 			by <%= link_to @topic.user.name, @topic.user %> <br />
 		   	<div style="color: #bbb;">Posted at <%= @topic.created_at.time.localtime.to_formatted_s(:db)%></div>
