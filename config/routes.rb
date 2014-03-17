@@ -6,7 +6,6 @@ MuicForum::Application.routes.draw do
 
   	resources :topics do
   		resources :comments
-  		resources :likes
   	end  	
 
 	resources :users
@@ -22,7 +21,8 @@ MuicForum::Application.routes.draw do
 	match '/contact', to: 'static_pages#contact', via: 'get'
 	match '/tags/:tag', to: 'topics#index', as: :tag, via: 'get'
 	match '/search', to: 'topics#search', via: 'get'
-	match 'topics/:id/like', to: 'topics#like', via: 'post'
+	match '/topics/:id/like', to: 'topics#like', via: 'post'
+	match '/topics/:id/unlike', to: 'topics#unlike', via: 'post'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

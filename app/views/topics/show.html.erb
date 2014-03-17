@@ -34,12 +34,20 @@
     	<%= @topic.subtitle %>
   	</div>
     <div class="panel-footer">
-
-  	    <%= link_to '#' do%>
-			<i class="fa fa-plus-circle fa-3" style="zoom: 3;"></i>
+		
+		<% if current_user.voted_for? @topic %>
+			<%= form_tag url_for(:controller => "topics", :action => 'unlike') do %>
+				<%= button_tag(:name => nil, style: "width: 2.7em; height: 3em; border: 0px; background-color: whitesmoke;", class: "btn btn-warning") do %>
+		  				<i class="fa fa-plus-circle fa-3 greyicon" style="zoom: 3; margin-left: -4px; margin-top: -2px;"></i>
+		  				<%end%>
+			<% end %>
+		<% else %>
+			<%= form_tag url_for(:controller => "topics", :action => 'like') do %>
+				<%= button_tag(:name => nil, style: "width: 2.7em; height: 3em; border: 0px; background-color: whitesmoke;", class: "btn btn-default") do %>
+		  				<i class="fa fa-plus-circle fa-3 blueicon" style="zoom: 3; margin-left: -4px; margin-top: -2px;"></i>
+		  				<%end%>
+			<% end %>
 		<% end %>
-
-
 
 	    <div style="margin-top: 5px;">
 			by <%= link_to @topic.user.name, @topic.user %> <br />

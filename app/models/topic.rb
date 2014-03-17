@@ -1,5 +1,6 @@
 class Topic < ActiveRecord::Base
 	acts_as_taggable_on :keyword
+	acts_as_votable
 
 	belongs_to :user
 	belongs_to :board

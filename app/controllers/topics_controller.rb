@@ -7,7 +7,21 @@ class TopicsController < ApplicationController
   	end
   end
 
+  def like
+  	@topic = Topic.find(params[:id])
+  	if @topic.liked_by current_user
+  		redirect_to board_topic_path(@topic.board, @topic)
+  	end
 
+  end
+
+  def unlike
+  	@topic = Topic.find(params[:id])
+  	if @topic.unliked_by current_user
+  		redirect_to board_topic_path(@topic.board, @topic)
+  	end
+
+  end
 
   # GET /topics
   # GET /topics.json
