@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 	acts_as_tagger
 	acts_as_voter
+	mount_uploader :avatar, AvatarUploader
 
 	has_secure_password
 	has_many :topics, dependent: :destroy

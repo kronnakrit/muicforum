@@ -20,6 +20,9 @@
 	      <%= f.label :password_confirmation, "Confirm Password" %>
 	      <%= f.password_field :password_confirmation, class:"form-control" %>
 
+	      <%= f.label 'Profile'%>
+		  <%= f.file_field :avatar, style:"border: 0px;" %>
+
 	      <%= f.submit "Save changes", class: "btn btn-primary", style:" width: 150px; margin-left: 37%;"%>
 	    <% end %>
 

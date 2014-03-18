@@ -14,6 +14,7 @@ gem 'font-awesome-sass'
 gem 'acts-as-taggable-on'
 gem 'acts_as_votable', '~>0.8.0'
 gem 'carrierwave'
+gem 'mini_magick'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
