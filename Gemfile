@@ -13,6 +13,7 @@ gem 'jquery-rails', '3.0.4'
 gem 'font-awesome-sass'
 gem 'acts-as-taggable-on'
 gem 'acts_as_votable', '~>0.8.0'
+gem 'carrierwave'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'

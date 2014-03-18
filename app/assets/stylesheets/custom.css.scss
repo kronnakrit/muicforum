@@ -1,5 +1,28 @@
 @import "bootstrap";
 
+.likelist{
+	a{
+		color: #6F8CA5;
+
+	}
+	background-color: #DFDFDF; 
+	padding: 5px; 
+	border-radius: 6px;
+	margin-top: 5px;
+}
+
+.likebuttontag{
+	width: 2.7em; 
+	height: 3em; 
+	border: 0px; 
+	background-color: whitesmoke;
+}
+
+.likebutton{
+	float: left; 
+	margin-top: 2px;
+}
+
 .blueicon{
 	color: #1E7BE0;
 }
@@ -38,6 +61,13 @@
 	font-family: inherit;
 	font-size: 13px;
 	margin-top: 4px;
+	a{
+		color: white;
+		background-color: #1E7BE0; 
+		padding: 5px; 
+		border-radius: 6px;
+		padding: 4px 4px 4px 4px;
+	}
 }
 
 #tag_cloud {

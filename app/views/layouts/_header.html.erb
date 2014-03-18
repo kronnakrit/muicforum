@@ -21,9 +21,9 @@
 			<div class="navbar-form navbar-left" role="search" style="margin-left: 6em;">
 	        <div class="form-group">
 				<%= form_tag url_for(:controller => "topics", :action => 'search'),:method => "get", id: "search-form" do %>
-  					<%= text_field_tag :search, params[:search], placeholder: "Search Topics", class: "form-control", style:"width:25em;" %>
+  					<%= text_field_tag :search, params[:search], placeholder: "Search Topics", class: "form-control", style:"width:25em; " %>
   			</div>
-	  				<%= button_tag(:name => nil, class: "btn btn-default", style:"margin-top: -15px; margin-left: 5px; padding: 2px 5px 2px 5px; width: 25px;") do %>
+	  				<%= button_tag(:name => nil, class: "btn btn-default", style:"margin-top: -15px; padding: 2px 5px 2px 5px; width: 25px; border-radius: 30px;") do %>
 	  				<i class="fa fa-search"></i>
 	  				<%end%>
 				<% end %>

@@ -40,6 +40,7 @@ end
   	@topic = Topic.find(params[:id])
   	@topic.board = @board
   	@comments = @topic.comments
+  	@users = @topic.votes.up.by_type(User).voters
   end
 
 
