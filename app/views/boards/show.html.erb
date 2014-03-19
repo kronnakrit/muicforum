@@ -11,16 +11,6 @@
 		<i class="fa fa-plus-square"></i> Create Topic 
 	<% end %>
 
-	<!-- <div class="navbar-form navbar-left" role="search" style="margin-left: 12em; margin-bottom: 0px;height: 35px;margin-top: 0px;">
-	        <div class="form-group">
-				<%= form_tag search_path ,:method => "get", id: "search-form" do %>
-  					<%= text_field_tag :search, params[:search], placeholder: "Search Topics", class: "form-control", style:"width:25em;" %>
-  			</div>
-  				<%= submit_tag "Search", :name => nil, class: "btn btn-default", style:"margin-top: -15px; margin-left: 5px; padding: 2px 5px 2px 5px; width: 75px;" %>
-				<% end %>
-	</div> -->
-
-
 	<div style="margin: 0px; float: right;">
 		<%= will_paginate @topics, renderer: BootstrapPagination::Rails %>
 	</div>
@@ -36,7 +26,7 @@
 <% @topics.each do |topic| %>
   <tr>
     <td>
-      <div id="post-link"><%= link_to topic.title, board_topic_path(:board_id => @board, :id =>  topic), id: "post-link"%></div>
+      <div id="post-link"><%= link_to topic.title.truncate(60), board_topic_path(:board_id => @board, :id =>  topic), id: "post-link"%></div>
       <div id="user-name-post-index"><span>by <%= link_to topic.user.name, topic.user %></span></div>
     </td>
     <td>

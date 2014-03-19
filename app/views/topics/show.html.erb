@@ -1,12 +1,12 @@
 <ol class="breadcrumb">
   <li><%= link_to 'Home', boards_path %></li>
   <li><%= link_to @board.title, @board %></li>
-  <li><%= link_to @topic.title, @topic %>
+  <li><%= link_to @topic.title.truncate(30), @topic %>
 </ol><p id="notice"><%= notice %></p>
  
 <div class="panel panel-default">
   	<div class="panel-heading" style="background-color: white;">
-	    <h3 class="panel-title" style="font-size: 30px; color: #586996;"><%= @topic.title %>
+	    	<h3 class="panel-title" style="font-size: 30px; color: #586996;"><%= @topic.title.squish.gsub(/(.{50})(?=.)/, '\1 \2') %>
 			<div class="delete-post-btn">
 			    <% if(current_user.id == @topic.user.id || current_user.admin?) %>
 					<div class="btn-group" style="float: right;">
@@ -54,16 +54,15 @@
 			by <%= link_to @topic.user.name, @topic.user %> <br />
 		   	<div style="color: #bbb;">Posted at <%= @topic.created_at.time.localtime.to_formatted_s(:db)%></div>
 	    </div>
-		
-			<% @users.each do |user|%>
-				<div class="likelist">
-					<% if(@users.last != user) %>
-						<%= link_to user.name, user %>, 
-					<% else %>
-						<%= link_to user.name, user %>
-					<% end %>
-				</div>
-			<% end %>
+			<div class="likelist">
+				<% @users.each do |user|%>
+						<% if(@users.last != user) %>
+							<%= link_to user.name, user %>, 
+						<% else %>
+							<%= link_to user.name, user %>
+						<% end %>
+				<% end %>
+			</div>
     </div>
 </div>
 <% @count = 0 %>

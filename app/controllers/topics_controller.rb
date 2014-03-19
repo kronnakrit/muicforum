@@ -41,6 +41,7 @@ end
   	@topic.board = @board
   	@comments = @topic.comments
   	@users = @topic.votes.up.by_type(User).voters
+  	@topic.keyword_list = @topic.keyword_list[0..4]
   end
 
 
@@ -52,6 +53,7 @@ end
 
   # GET /topics/1/edit
   def edit
+  	@topic.keyword_list = @topic.keyword_list[0..4]
   end
 
   # POST /topics
@@ -61,6 +63,8 @@ end
     @topic = Topic.new(topic_params)
     @topic.user_id = current_user.id
     @topic.board = @board
+    @topic.keyword_list = @topic.keyword_list[0..4]
+
 
     if current_user && @topic.save
   		flash[:success] = "Topic was successfuly created."

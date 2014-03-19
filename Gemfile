@@ -15,6 +15,9 @@ gem 'acts-as-taggable-on'
 gem 'acts_as_votable', '~>0.8.0'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
+gem 'redis'
+gem 'redis-namespace'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'

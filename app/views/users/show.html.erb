@@ -2,12 +2,20 @@
 <div class="row profile">
     <div class="col-md-4">
 	    <h1>
+	    	<% if @user.avatar? %>
 	    	<div style="float:left; border: 2px solid #d5d5d5; padding: 3px;">
 	    		<%= image_tag @user.avatar.url %>
 	    	</div>
+	    	<% end %>
 	        <div style="float:left; margin-left: 15px;"><%= @user.name %></div>
 	      </h1>
-	      <div style="margin-top: 70px; margin-left: 127px;"><span class="badge" id="setting"><%= link_to 'Setting', edit_user_path(current_user)%></span></div> 
+	      <% if( current_user.id == @user.id) %>
+		      	<% if @user.avatar? %>
+			      	<div style="margin-top: 70px; margin-left: 127px;"><span class="badge" id="setting"><%= link_to 'Setting', edit_user_path(current_user)%></span></div> 
+				<% else %>
+					<div style="margin-top: 70px; margin-left: 17px;"><span class="badge" id="setting"><%= link_to 'Setting', edit_user_path(current_user)%></span></div> 
+				<% end %>
+	      <% end %>
     </div>
 
 	<div class="col-md-4 col-md-offset-1">
