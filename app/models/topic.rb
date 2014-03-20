@@ -1,6 +1,5 @@
 class Topic < ActiveRecord::Base
 	acts_as_taggable_on :keyword
-	validates     :keyword, length: { :maximum => 20 }
 	acts_as_votable
 
 	belongs_to :user

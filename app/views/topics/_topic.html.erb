@@ -1,5 +1,5 @@
 <li>
-  <span class="content"><h4 style="text-decoration: none;"><%= link_to topic.title, board_topic_path(topic.board_id, topic) %></h4></span>
+  <span class="content"><h4 style="text-decoration: none;"><%= link_to topic.title.truncate(60), board_topic_path(topic.board_id, topic) %></h4></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(topic.created_at) %> ago.
   </span>

@@ -24,3 +24,10 @@ $(document).ready(function() {
 		return false;
 	});
 });
+
+$('#myTab a').click(function (e) {
+  e.preventDefault()
+  $('#myTab a[href="#topicbar"]').tab('show')
+  $('#myTab a[href="#commentbar"]').tab('show')
+
+})

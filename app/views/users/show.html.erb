@@ -1,32 +1,52 @@
 <% provide(:title, @user.name) %>
 <div class="row profile">
     <div class="col-md-4">
-	    <h1>
 	    	<% if @user.avatar? %>
-	    	<div style="float:left; border: 2px solid #d5d5d5; padding: 3px;">
+	    	<div style="float:left; border: 2px solid #d5d5d5; padding: 3px; margin-left: 5em; margin-bottom: 0.5em;">
 	    		<%= image_tag @user.avatar.url %>
 	    	</div>
 	    	<% end %>
-	        <div style="float:left; margin-left: 15px;"><%= @user.name %></div>
-	      </h1>
-	      <% if( current_user.id == @user.id) %>
+			<% if( current_user.id == @user.id) %>
 		      	<% if @user.avatar? %>
-			      	<div style="margin-top: 70px; margin-left: 127px;"><span class="badge" id="setting"><%= link_to 'Setting', edit_user_path(current_user)%></span></div> 
+			      	<div style="margin-left: 5em;"><%= link_to 'Setting', edit_user_path(current_user), style: "", class: "btn btn-primary"%></div> 
 				<% else %>
-					<div style="margin-top: 70px; margin-left: 17px;"><span class="badge" id="setting"><%= link_to 'Setting', edit_user_path(current_user)%></span></div> 
+					<div style="margin-left: 5em;"><%= link_to 'Setting', edit_user_path(current_user), style: "", class: "btn btn-primary"%></div> 
 				<% end %>
-	      <% end %>
+	     	<% end %>
+
+
+	      <h1>
+	        <div style=" margin-left: 1.7em;"><%= @user.name %></div>
+	      </h1>
+	      
     </div>
 
-	<div class="col-md-4 col-md-offset-1">
-	    <% if @user.topics.any? %>
-	      <h3>Topics (<%= @user.topics.count %>)</h3>
-	      <%= will_paginate @topics, renderer: BootstrapPagination::Rails %>
-	      <ol class="topics" style=" padding-left: 0px; width: 650px; ">
-	        <%= render @topics %>
-	      </ol>
-	      <%= will_paginate @topics, renderer: BootstrapPagination::Rails %>
-	    <% end %>
-  	</div>
+	<% if @user.topics.any? %>
 
+    <div class="col-md-4 col-md-offset-1">
+		<ul class="nav nav-tabs">
+		  <li class="active"><a href="#topicbar" data-toggle="tab">Topics (<%= @user.topics.count %>)</a></li>
+		  <li><a href="#commentbar"  data-toggle="tab">Comments (<%= @user.comments.count %>)</a></li>
+		</ul>
+		
+		<div class="tab-content" id="myTab">
+			<div id="topicbar" class="tab-pane fade in active" style="margin-top:10px;">
+			      <%= will_paginate @topics, renderer: BootstrapPagination::Rails%>
+			      <ol class="topics" style=" padding-left: 0px; width: 650px;" id="topicbar">
+			        <%= render @topics %>
+			      </ol>
+			      <%= will_paginate @topics, renderer: BootstrapPagination::Rails %>
+		    </div>
+
+		    <div id="commentbar" class="tab-pane fade">
+			      <%= will_paginate @comments, renderer: BootstrapPagination::Rails %>
+			      <ol class="topics" style=" padding-left: 0px; width: 650px;" id="topicbar">
+			        <%= render @comments %>
+			      </ol>
+			      <%= will_paginate @comments, renderer: BootstrapPagination::Rails %>
+		    </div>
+		</div>
+	<% end %>
+  	</div>
+<script src="http://thecodeplayer.com/uploads/js/prefixfree-1.0.7.js" type="text/javascript" type="text/javascript"></script>
 </div>

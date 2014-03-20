@@ -54,6 +54,7 @@
 			by <%= link_to @topic.user.name, @topic.user %> <br />
 		   	<div style="color: #bbb;">Posted at <%= @topic.created_at.time.localtime.to_formatted_s(:db)%></div>
 	    </div>
+	    <% if @users.any? %>
 			<div class="likelist">
 				<% @users.each do |user|%>
 						<% if(@users.last != user) %>
@@ -63,6 +64,7 @@
 						<% end %>
 				<% end %>
 			</div>
+		<% end %>
     </div>
 </div>
 <% @count = 0 %>
