@@ -7,9 +7,6 @@
 	  <%= link_to "Sign up now!", new_user_url, class: "btn btn-primary btn-lg" %>
 	</div>
 <% else %>
-		<ol class="breadcrumb" style="margin-left: 5px;">
- 			 <li><%= link_to 'Home', boards_path %></li>
-		</ol>
 		<div class="container">
 		  <% @boards.each do |board| %>
 		  <div class="board-container" style="padding: 0px;" >
