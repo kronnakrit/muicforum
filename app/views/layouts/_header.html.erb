@@ -17,7 +17,7 @@
 
 
 			<% if signed_in? %>
-				<div class="navbar-form navbar-left" role="search" style="margin-left: 6em;">
+				<div class="navbar-form navbar-left" role="search" style="margin-left: 4em;">
 		        <div class="form-group">
 					<%= form_tag url_for(:controller => "topics", :action => 'search'),:method => "get", id: "search-form" do %>
 	  					<%= text_field_tag :search, params[:search], placeholder: "Search Topics", class: "form-control", style:"width:25em; " %>
@@ -33,6 +33,10 @@
 	        <ul class="nav navbar-nav navbar-right">
 	          <li><%= link_to root_path do %>
 					<i class="fa fa-home"></i> Home
+				<% end %>
+	          </li>
+	          <li><%= link_to like_path do %>
+					<i class="fa fa-heart"></i> Favourite
 				<% end %>
 	          </li>
 	          <li><%= link_to tagcloud_path do%>

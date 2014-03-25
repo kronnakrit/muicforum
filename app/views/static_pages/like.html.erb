@@ -1,0 +1,34 @@
+<h1 id="page_title" style="margin-left: -50px;">Favourite</h1>
+<p id="notice"><%= notice %></p>
+<table class = "table">
+  <tr>
+    <th style="width: 650px;"><i class="fa fa-list-ul"> Topic / Author</th>
+    <th style="width: 100px;">Last Reply</th>
+    <th>Number of Replies</th>
+  </tr>
+<% current_user.find_voted_items.each do |topic| %>
+  <tr>
+    <td>
+      <div id="post-link"><%= link_to topic.title, board_topic_path(topic.board, topic), id: "post-link"%></div>
+      <div id="user-name-post-index"><span>by <%= link_to topic.user.name, topic.user %></span></div>
+    </td>
+    <td>
+      <% comment = topic.comments.last %>
+      <% if comment%>
+      	<span class="timestamp">
+    		<%= comment.created_at.time.localtime.to_formatted_s(:db) %>
+  		</span>
+      <% else %>
+      	<span class="timestamp">
+    	 	<%= topic.created_at.time.localtime.to_formatted_s(:db) %>
+  		</span>
+      <% end %>
+
+    </td>
+    <td>
+      <%=  topic.comments.count%>
+    </td>
+  </tr>
+<% end %>
+</table> 
+<br/>
