@@ -24,31 +24,40 @@
     <th style="text-align: center;">Number of Replies</th>
   </thead>
   </tr>
-<% @topics.each do |topic| %>
-  <tr>
-    <td>
-      <div id="post-link"><%= link_to topic.title.truncate(60), board_topic_path(:board_id => @board, :id =>  topic), id: "post-link"%></div>
-      <div id="user-name-post-index"><span>by <%= link_to topic.user.name, topic.user %></span></div>
-    </td>
-    <td>
-      <% comment = topic.comments.last %>
-      <% if comment%>
-      	<span class="timestamp">
-    		<%= comment.created_at.time.localtime.to_formatted_s(:db) %>
-  		</span>
-      <% else %>
-      	<span class="timestamp">
-    	 	<%= topic.created_at.time.localtime.to_formatted_s(:db) %>
-  		</span>
-      <% end %>
+<% if @topics.any? %>
+	<% @topics.each do |topic| %>
+	  <tr>
+	    <td>
+	      <div id="post-link"><%= link_to topic.title.truncate(60), board_topic_path(:board_id => @board, :id =>  topic), id: "post-link"%></div>
+	      <div id="user-name-post-index"><span>by <%= link_to topic.user.name, topic.user %></span></div>
+	    </td>
+	    <td>
+	      <% comment = topic.comments.last %>
+	      <% if comment%>
+	      	<span class="timestamp">
+	    		<%= comment.created_at.time.localtime.to_formatted_s(:db) %>
+	  		</span>
+	      <% else %>
+	      	<span class="timestamp">
+	    	 	<%= topic.created_at.time.localtime.to_formatted_s(:db) %>
+	  		</span>
+	      <% end %>
 
-    </td>
-    <td style="text-align: center;">
-      <%=  topic.comments.count%>
-    </td>
-  </tr>
+	    </td>
+	    <td style="text-align: center;">
+	      <%=  topic.comments.count%>
+	    </td>
+	  </tr>
+	<% end %>
+	</table> 
+<% else %>
+	<tr>
+		<td>
+			Board in empty!
+		</td>
+	</tr>
+	</table>
 <% end %>
-</table> 
 <div style="margin: 0px; float: right;">
 		<%= will_paginate @topics, renderer: BootstrapPagination::Rails %>
 </div>
