@@ -1,5 +1,25 @@
 @import "bootstrap";
 
+.modal-backdrop {
+	position: relative;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 5000;
+	background-color: black;
+}
+
+.table{
+	thead{
+		background-color: #51628F; 
+		color: white; font-weight: bold;
+	}
+	td{
+		
+	}
+}
+
 #setting{
 	font-weight: normal;
 	background-color: #428BCA;
@@ -99,26 +119,6 @@
 	height: 30em;
 }
 
-#basic-modal{
-	text-decoration: none;
-	padding-left: 1.4em;
-	a:link {
-		color: #000000; 
-		text-decoration: none; 
-	}
-	a:active {
-		color: #000; 
-		text-decoration: none; 
-	}
-	a:visited {
-		color: #000; 
-		text-decoration: none; 
-	}
-	a:hover {
-		color: #ff0000; 
-		text-decoration: underline; 
-	}
-}
 
 #comment{
 	float: left; 

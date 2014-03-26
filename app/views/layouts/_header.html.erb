@@ -17,17 +17,32 @@
 
 
 			<% if signed_in? %>
-				<div class="navbar-form navbar-left" role="search" style="margin-left: 4em;">
-		        <div class="form-group">
-					<%= form_tag url_for(:controller => "topics", :action => 'search'),:method => "get", id: "search-form" do %>
-	  					<%= text_field_tag :search, params[:search], placeholder: "Search Topics", class: "form-control", style:"width:25em; " %>
-	  			</div>
-	  				<%= button_tag(:name => nil, class: "btn btn-default", style:"margin-top: -15px; padding: 2px 5px 2px 5px; width: 25px; margin-left: -33px; border: white;") do %>
-			  				<i class="fa fa-search"></i>
-			  				<%end%>
-		  				
-					<% end %>
-				</div> 
+				<% if current_user.admin? %>
+					<div class="navbar-form navbar-left" role="search" style="margin-left: 0em;">
+			        <div class="form-group">
+						<%= form_tag url_for(:controller => "topics", :action => 'search'),:method => "get", id: "search-form" do %>
+		  					<%= text_field_tag :search, params[:search], placeholder: "Search Topics", class: "form-control", style:"width:23.5em; " %>
+		  			</div>
+		  				<%= button_tag(:name => nil, class: "btn btn-default", style:"margin-top: -15px; padding: 2px 5px 2px 5px; width: 25px; margin-left: -33px; border: white;") do %>
+				  				<i class="fa fa-search"></i>
+				  				<%end%>
+			  				
+						<% end %>
+					</div> 
+				<% else %>
+
+					<div class="navbar-form navbar-left" role="search" style="margin-left: 4em;">
+				        <div class="form-group">
+							<%= form_tag url_for(:controller => "topics", :action => 'search'),:method => "get", id: "search-form" do %>
+			  					<%= text_field_tag :search, params[:search], placeholder: "Search Topics", class: "form-control", style:"width:25em; " %>
+			  			</div>
+			  				<%= button_tag(:name => nil, class: "btn btn-default", style:"margin-top: -15px; padding: 2px 5px 2px 5px; width: 25px; margin-left: -33px; border: white;") do %>
+					  				<i class="fa fa-search"></i>
+					  				<%end%>
+				  				
+							<% end %>
+					</div>
+				<% end %> 
 			<% end %>
 	      
 	        <ul class="nav navbar-nav navbar-right">
@@ -50,7 +65,11 @@
 	          <% if signed_in? %>
 	          	<!-- admin only.. need to put if only admin later !!-->
 	          	<% if current_user.admin? %>
-	          		<li><%= link_to "Users", users_path %></li>
+	          		<li>
+	          			<%= link_to users_path do %>
+							<i class="fa fa-users"></i> Users
+						<% end %>
+	          		</li>
 	          	<% end %>
 	          	<!-- admin only.. need to put if only admin later !!-->
 	            <li class="dropdown">
@@ -62,6 +81,12 @@
 	                	<i class="fa fa-user"></i> Profile
 						<% end %>
 					</li>
+					<% if current_user.admin? %>
+						<li><%= link_to boardpanel_path do%>
+								<i class="fa fa-bold"></i> Board
+							<% end %>
+		                </li>
+		            <% end %>
 	                <li><%= link_to edit_user_path(current_user) do%>
 							<i class="fa fa-cog"></i> Setting
 						<% end %>

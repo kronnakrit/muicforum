@@ -1,6 +1,8 @@
-<li>
-  <span class="content"><h4 style="text-decoration: none;"><%= link_to comment.content.truncate(60), board_topic_path(comment.topic.board_id, comment) %></h4></span>
-  <span class="timestamp">
-    Commented <%= time_ago_in_words(comment.created_at) %> ago.
-  </span>
-</li>
+<% if comment.topic.board %>
+	<li>
+	  <span class="content"><h4 style="text-decoration: none;"><%= link_to comment.content.truncate(60), board_topic_path(comment.topic.board_id, comment.topic) %></h4></span>
+	  <span class="timestamp">
+	    Commented <%= time_ago_in_words(comment.created_at) %> ago.
+	  </span>
+	</li>
+<% end %>

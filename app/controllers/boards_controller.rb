@@ -28,38 +28,36 @@ class BoardsController < ApplicationController
   def create
     @board = Board.new(board_params)
 
-    respond_to do |format|
       if @board.save
-        format.html { redirect_to @board, notice: 'Board was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @board }
+        flash[:success] = "Board was successfully created"
+        redirect_to boardpanel_path
       else
         format.html { render action: 'new' }
         format.json { render json: @board.errors, status: :unprocessable_entity }
       end
-    end
   end
 
   # PATCH/PUT /boards/1
   # PATCH/PUT /boards/1.json
   def update
-    respond_to do |format|
       if @board.update(board_params)
-        format.html { redirect_to @board, notice: 'Board was successfully updated.' }
-        format.json { head :no_content }
+        flash[:success] = "Board was successfully updated."
+        redirect_to boardpanel_path
       else
-        format.html { render action: 'edit' }
-        format.json { render json: @board.errors, status: :unprocessable_entity }
+        
       end
-    end
   end
 
   # DELETE /boards/1
   # DELETE /boards/1.json
   def destroy
-    @board.destroy
-    respond_to do |format|
-      format.html { redirect_to boards_url }
-      format.json { head :no_content }
+  	@board.topics.each do |topic|
+    		topic.keyword_list.remove(topic.keyword_list, parse: true)
+    		topic.save
+    end
+    if @board.destroy
+ 		flash[:success] = "Board was successfully deleted"
+ 		redirect_to boardpanel_path
     end
   end
 

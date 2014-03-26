@@ -20,7 +20,7 @@
 					    </li>
 					    <li><%= link_to @topic, method: :delete,
 					                                  data: { confirm: "Are you sure?" } do%>
-								<i class="fa fa-eraser"></i> Delete
+								<i class="fa fa-trash-o"></i> Delete
 							<% end %>
 					    </li>
 					  </ul>
@@ -80,23 +80,24 @@
     						<span class="caret"></span>
   						</button>		
 					 	<ul class="dropdown-menu" role="menu">
-						 	<div id='basic-modal'>
-							    <li><%= link_to [@topic, comment], class: 'basic' do %>
-										<i class="fa fa-pencil"></i> Edit
-									<% end %>
-							    </li>
-							</div>
-						    <li><%= link_to [@topic, comment], method: :delete,
-				                          data: { confirm: "You sure?" } do%>
-									<i class="fa fa-eraser"></i> Delete
-								<% end %>
+						    <li>
+								<a href data-toggle="modal" 
+								   data-target="#editModal">
+								   <i class="fa fa-pencil"></i> Edit
+								</a>
+						    </li>
+						    <li>
+						    	<a href data-toggle="modal" 
+								   data-target="#myModal">
+								   <i class="fa fa-trash-o"></i> Delete
+								</a>
 				            </li>
 					  	</ul>
 					</div>
 				<% end %>
 		
 	 	<div class="panel-body" style="margin-bottom: 1em; margin-top: 1.5em">
-        	<%=comment.content%>
+        	<p><%=comment.content%></p>
         	<br/>
 	  	</div>
 	  	<div class="panel-footer">
@@ -107,24 +108,50 @@
 	  </div>
 	</div>
 
-	<!-- This is modal for edit comment-->
-	<div id="basic-modal-content" title="Edit comment">	
-			
-		<%= form_for([@topic, comment]) do |f| %>
-	  		<div class="field">
+	<!-- delete Modal -->
+	<div class="modal fade" id="myModal" tabindex="-65" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title" id="myModalLabel">Delete Board</h4>
+	      </div>
+	      <div class="modal-body">
+	       	Are you sure?
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+	        <%= link_to [@topic, comment], method: :delete, class: "btn btn-danger" do%>
+									 Delete
+			<% end %>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<!-- edit Modal -->
+	<div class="modal fade" id="editModal" tabindex="-65" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title" id="myModalLabel">Delete Board</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<%= form_for([@topic, comment]) do |f| %>
+	       		<div class="field">
 	    		<%= f.label 'Edit Comment' %>
 	    		<%= f.text_area :content, class:"form-control" %>
 	  		</div>
-	   		<div class="actions" style="text-align: center;">
-	    		<%= f.submit "Submit", class: "btn btn-primary"%>
-	  		</div>
-		<% end %>
-			
-		<div>
-			Press ESC to cancel editing.
-		</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+	        <%= f.submit "Submit", class: "btn btn-primary", style: "width: 6em;"%>
+	        <% end %>
+	      </div>
+	    </div>
+	  </div>
 	</div>
-
 <% end %>
 
 <%= form_for([@topic, @topic.comments.build]) do |f| %>
@@ -136,10 +163,5 @@
     <%= f.submit 'Comment',class: "btn btn-primary"%>
   </div>
 <% end %>
-
-
-
-
-
 
 

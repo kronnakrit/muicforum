@@ -17,6 +17,9 @@
 //= require_tree .
 
 
+$(function () { $('#myModal').modal({
+      keyboard: true
+   })});
 
 $('#myTab a').click(function (e) {
   e.preventDefault()
@@ -25,7 +28,6 @@ $('#myTab a').click(function (e) {
 
 })
 
-
 /*Jquery time*/
 $(document).ready(function(){
 	var item, img, title, large_img;
@@ -33,6 +35,7 @@ $(document).ready(function(){
 	//Flag for preventing multiple image displays
 	var lb_loading = false;
 	var doc = $(document);
+
 	
 	$("#lightbox li").click(function(){
 		if(lb_loading) return false;
