@@ -23,13 +23,15 @@
 		  <% end %>
 		</div>
 	<% else %>
-		<div class="center jumbotron">
-	  <h1>You have no board !!</h1>
-	  <p>
-	    Please click button below to create board.
-	  </p>
-	  <%= link_to "Create board", new_board_path, class: "btn btn-primary btn-lg", style: "margin-left: -40px;" %>
-	</div>
+		<% if current_user.admin? %>
+			<div class="center jumbotron">
+		  <h1>You have no board !!</h1>
+		  <p>
+		    Please click button below to create board.
+		  </p>
+		  <%= link_to "Create board", new_board_path, class: "btn btn-primary btn-lg", style: "margin-left: -40px;" %>
+		</div>
+		<% end %>
 	<% end %>
 	  
 <% end %>
