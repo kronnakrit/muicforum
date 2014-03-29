@@ -21,6 +21,14 @@ class User < ActiveRecord::Base
     	Digest::SHA1.hexdigest(token.to_s)
   	end
 
+  	def self.usersearch(usersearch)
+		if usersearch  
+	    	where('name LIKE ?', "%#{usersearch}%")  
+	    else  
+	     	scoped  
+	  	end  
+	end
+
   	private
 
 	    def create_remember_token

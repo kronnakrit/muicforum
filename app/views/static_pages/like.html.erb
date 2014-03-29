@@ -9,31 +9,39 @@
     </thead>
   </tr>
 <% if current_user.find_voted_items.any? %>
+	<% count = 0 %>
 	<% current_user.find_voted_items.each do |topic| %>
-		<% if topic.board %>
-		  <tr>
-		    <td>
-		      <div id="post-link"><%= link_to topic.title, board_topic_path(topic.board, topic), id: "post-link"%></div>
-		      <div id="user-name-post-index"><span>by <%= link_to topic.user.name, topic.user %></span></div>
-		    </td>
-		    <td>
-		      <% comment = topic.comments.last %>
-		      <% if comment%>
-		      	<span class="timestamp">
-		    		<%= comment.created_at.time.localtime.to_formatted_s(:db) %>
-		  		</span>
-		      <% else %>
-		      	<span class="timestamp">
-		    	 	<%= topic.created_at.time.localtime.to_formatted_s(:db) %>
-		  		</span>
-		      <% end %>
+		<% if topic.board%>
+			<tr>
+			    <td>
+			      <div id="post-link"><%= link_to topic.title, board_topic_path(topic.board, topic), id: "post-link"%></div>
+			      <div id="user-name-post-index"><span>by <%= link_to topic.user.name, topic.user %></span></div>
+			    </td>
+			    <td>
+			      <% comment = topic.comments.last %>
+			      <% if comment%>
+			      	<span class="timestamp">
+			    		<%= comment.created_at.time.localtime.to_formatted_s(:db) %>
+			  		</span>
+			      <% else %>
+			      	<span class="timestamp">
+			    	 	<%= topic.created_at.time.localtime.to_formatted_s(:db) %>
+			  		</span>
+			      <% end %>
 
-		    </td>
-		    <td>
-		      <%=  topic.comments.count%>
-		    </td>
-		  </tr>
-	  <% end %>
+			    </td>
+			    <td>
+				    <%=  topic.comments.count%>
+			    </td>
+			</tr>
+		<% else %>
+			<% if count < 1 %>
+			<% count = count+1 %>
+			<tr>
+				<td>You don't have any favourite topic.</td>
+			</tr>
+			<% end %>
+		<% end %>
 	<% end %>
 
 <% else %>

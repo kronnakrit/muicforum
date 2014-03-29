@@ -25,6 +25,8 @@ MuicForum::Application.routes.draw do
 	match '/topics/:id/unlike', to: 'topics#unlike', via: 'post'
 	match '/like',	to: 'static_pages#like', 	via: 'get'
 	match '/boardpanel', to:'boards#boardpanel', via: 'get'
+	match '/users/:id/admin', to: 'users#admin', via: 'post'
+	match '/usersearch', to: 'users#usersearch', via:'get'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def index
-  	@users = User.paginate(page: params[:page])
+  	@users = User.paginate(per_page: 15,page: params[:page])
   end
   
   def create
@@ -45,6 +45,19 @@ class UsersController < ApplicationController
   end
 
   def edit
+  end
+
+  def admin
+  	@user = User.find(params[:id])
+  	if @user.toggle!(:admin)
+  		redirect_to @user
+  	end
+  end
+
+  def usersearch
+  	if(params[:usersearch])
+  		@users = User.usersearch(params[:usersearch]).paginate(per_page: 15, page: params[:page])
+  	end
   end
 
   private

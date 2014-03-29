@@ -1,10 +1,39 @@
 <div style="background-color: white; border-radius: 6px;">
 	<li style="padding-left: 10px;">
-		<%= image_tag user.avatar.url, style: "width:100px; height: auto;"%>
-	 	<%= link_to user.name, user %>
-	  	<% if current_user.admin? && !current_user?(user) %>
-	    | <%= link_to "delete", user, method: :delete,
-	                                  data: { confirm: "You sure?" } %>
-	  <% end %>
+		<%= image_tag user.avatar.url, style: "width:100px; height: auto; float: left;"%>
+		<div style="margin-left: 10%;">
+			<p style="text-align: left; font: 20px bold; font-family: inherit;"><%= user.name.capitalize %></p>
+		<% if user.admin? %>
+				<p style="text-align: left; font: 10px; font-family: inherit; color: green;">Admin</p>
+		<% end %>
+		</div>
+		<div style="margin-left: 10%;">
+		 	<%= link_to "Profile", user, class: "btn btn-primary" %>
+		  	<% if current_user.admin? && !current_user?(user) && !user.admin? %>
+		      <a href data-toggle="modal" 
+						   data-target="#<%= user.id %>delete" class="btn btn-danger">
+						   Remove
+						</a>
+			<% end %>
+		</div>
 	</li>
 </div>
+
+<!-- delete comment Modal -->
+	<div class="modal fade" id="<%= user.id %>delete" tabindex="-65" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title" id="myModalLabel">Delete comment</h4>
+	      </div>
+	      <div class="modal-body">
+	       	Are you sure?
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+	        <%= link_to "Remove", user, method: :delete,  class: "btn btn-danger" %>
+	      </div>
+	    </div>
+	  </div>
+	</div>

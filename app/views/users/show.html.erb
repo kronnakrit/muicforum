@@ -4,14 +4,31 @@
 	    		<div id="lightbox" style="float:left; width: 450px; width: 400px; height: auto;">
 	    			<ul>
 						<li style="border: 1px solid #CCC;">
-	    					<%= image_tag @user.avatar.url %>
+	    						<%= image_tag @user.avatar.url %>
 	    				</li>
-	    				<% if( current_user.id == @user.id) %>
-							<%= link_to 'Edit profile', edit_user_path(current_user), style: "margin-top: -10px;", class: "btn btn-primary"%> 
+	    			
+
+	    				<% if( current_user == @user) %>
+							<%= link_to 'Edit profile', edit_user_path(current_user), class: "btn btn-primary"%> 
+						<% end %>
+						<% if (current_user.admin? && (current_user != @user)) %>
+							<% if !@user.admin? %>
+								<%= form_tag url_for(:controller => "users", :action => 'admin') do %>
+									<%= button_tag(:name => nil, class: "btn btn-success") do %>
+							  				Make Admin
+							  		<%end%>
+								<% end %>
+							<% else %>
+								<%= form_tag url_for(:controller => "users", :action => 'admin') do %>
+									<%= button_tag(:name => nil, class: "btn btn-danger") do %>
+							  				Remove Admin
+							  		<%end%>
+								<% end %>
+							<% end %>
 						<% end %>
 	    			</ul>
-	    			
-	    		</div>
+	    		</div>	
+	    		
 
 	      <h1>
 	        <div style="text-align: center;"><%= @user.name %></div>
