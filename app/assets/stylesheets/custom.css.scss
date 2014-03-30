@@ -1,5 +1,14 @@
 @import "bootstrap";
 
+.staticcontainer{
+	background: #EEE; 
+	padding: 10px;
+}
+
+.btn {
+	border-radius: 2px;
+}
+
 .modal-backdrop {
 	position: relative;
 	top: 0;
@@ -35,7 +44,6 @@
 	}
 	background-color: #DFDFDF; 
 	padding: 5px; 
-	border-radius: 6px;
 	margin-top: 5px;
 }
 
@@ -91,9 +99,9 @@
 	margin-top: 4px;
 	a{
 		color: white;
-		background-color: #1E7BE0; 
+		background-color: #1C6EC7; 
 		padding: 5px; 
-		border-radius: 6px;
+		border-radius: 2px;
 		padding: 4px 4px 4px 4px;
 	}
 }
@@ -137,6 +145,7 @@
 .breadcrumb{
 	background-color: #fff;
 	text-shadow: none;
+	border-radius: 2px;
 }
 
 .panel-title{
@@ -206,6 +215,7 @@
 	margin-bottom: 0.5em;
 	border-radius: 6px;
 	background-color: #fff;
+	border-radius: 2px;
 
 }
 
@@ -218,7 +228,6 @@
 	width: 100%;
 	margin-bottom: 10px;
 	background-color: #fff;
-	border-radius: 6px;
 }
 
 a#post-link:link {
@@ -278,12 +287,11 @@ a#post-link:hover {
 }
 
 .board-container{
-	background-color: #F0F0F0;
-	border-radius: 6px;
+	background-color: white;
 	padding-bottom: 10px;
 	padding-left: 5px;
 	padding-right: 5px;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	margin-left: -10px;
 }
 a.fill-div{

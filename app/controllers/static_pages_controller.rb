@@ -8,4 +8,10 @@ class StaticPagesController < ApplicationController
   def tagcloud
   	@tags = Topic.tag_counts_on(:keyword, :limit => 45, :order => "count desc")
   end
+
+  def about
+  end
+
+  def contact
+  end
 end
