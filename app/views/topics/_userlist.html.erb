@@ -1,0 +1,13 @@
+<div id="userlist">
+	<% if users.any? %>
+		<div class="likelist" >
+			<% users.each do |user|%>
+				<% if(users.last != user) %>
+					<%= link_to user.name, user %>, 
+				<% else %>
+					<%= link_to user.name, user %>
+				<% end %>
+			<% end %>
+		</div>
+	<% end %>
+</div>

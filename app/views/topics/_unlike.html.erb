@@ -1,0 +1,5 @@
+<%= form_tag url_for(:controller => "topics", :action => 'like'), class: "likebutton", remote: true do %>
+	<%= button_tag(:name => nil, class: "btn btn-warning likebuttontag") do %>
+		<i class="fa fa-plus-circle fa-3 greyicon" id="likeBut" style="zoom: 3; margin-left: -4px; margin-top: -2px;"></i>
+	<%end%>
+<% end %>

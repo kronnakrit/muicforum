@@ -9,17 +9,24 @@ class TopicsController < ApplicationController
 
   def like
   	@topic = Topic.find(params[:id])
-  	if @topic.liked_by current_user
-  		redirect_to board_topic_path(@topic.board, @topic)
-  	end
-
+  	@topic.liked_by current_user
+  	@users = @topic.votes.up.by_type(User).voters
+  		
+  	respond_to do |format|
+      format.html { redirect_to board_topic_path(@topic.board, @topic) }
+      format.js
+    end 
   end
 
   def unlike
   	@topic = Topic.find(params[:id])
-  	if @topic.unliked_by current_user
-  		redirect_to board_topic_path(@topic.board, @topic)
-  	end
+  	@topic.unliked_by current_user
+  	@users = @topic.votes.up.by_type(User).voters
+
+  	respond_to do |format|
+      format.html { redirect_to board_topic_path(@topic.board, @topic) }
+      format.js
+    end
 
   end
 

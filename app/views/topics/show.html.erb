@@ -35,40 +35,115 @@
   	</div>
     <div class="panel-footer" style="margin-top: 1.5em;">
 		
-		<% if current_user.voted_for? @topic %>
-			<%= form_tag url_for(:controller => "topics", :action => 'unlike'), class: "likebutton" do %>
-				<%= button_tag(:name => nil, class: "btn btn-default likebuttontag") do %>
-		  				<i class="fa fa-plus-circle fa-3 blueicon" style="zoom: 3; margin-left: -4px; margin-top: -2px;"></i>
-		  				<%end%>
-			<% end %>
-		<% else %>
-			<%= form_tag url_for(:controller => "topics", :action => 'like'), class: "likebutton" do %>
-				<%= button_tag(:name => nil, class: "btn btn-warning likebuttontag") do %>
-		  				<i class="fa fa-plus-circle fa-3 greyicon" style="zoom: 3; margin-left: -4px; margin-top: -2px;"></i>
-		  				<%end%>
-			<% end %>
-		<% end %>
+		<%= render 'like_form' %>
 
-		<div style=" float: left; margin-left: 3px; margin-right: 15px; margin-bottom:10px; margin-top:7px;" ><span class="badge" style="font-size: 20px;"><i class="fa fa-heart"></i> <%= @topic.votes.size %></span></div>
+		<div style=" float: left; margin-left: 3px; margin-right: 15px; margin-bottom:10px; margin-top:7px;">
+			<span class="badge" style="font-size: 20px;" id="likes">
+				<%= render 'votesize' %>
+			</span>
+		</div>
+
 	    <div style="margin-top: 5px;"> 
 			by <%= link_to @topic.user.name, @topic.user %> <br />
 		   	<div style="color: #bbb;">Posted at <%= @topic.created_at.time.localtime.to_formatted_s(:db)%></div>
 	    </div>
-	    <% if @users.any? %>
-			<div class="likelist">
-				<% @users.each do |user|%>
-						<% if(@users.last != user) %>
-							<%= link_to user.name, user %>, 
-						<% else %>
-							<%= link_to user.name, user %>
-						<% end %>
-				<% end %>
-			</div>
-		<% end %>
+		
+		<%= render 'userlist', users: @users %>
+		
+		
     </div>
 </div>
 
-<%= render partial: 'comments/_topiccomment.html.erb', locals: {comment: @comment} %>
+<% @count = 0 %>
+<% @topic.comments.each do |comment| %>
+	<% @count = @count + 1 %>
+	<div class="panel panel-default" id="comment-<%= comment.id%>">
+		<div id="comment">
+			Comment #<%= @count %>
+		</div>
+		<% if( (current_user.id == comment.user.id || current_user.admin?) && !comment.dstatus ) %>
+			<div class="btn-group" style="float: right; margin-right: 17px;">
+			   	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" >
+					<span class="caret"></span>
+					</button>		
+			 	<ul class="dropdown-menu" role="menu">
+				    <li>
+						<a href data-toggle="modal" 
+						   data-target="#<%= comment.id %>edit"
+						   <i class="fa fa-pencil"></i> Edit
+						</a>
+				    </li>
+				    <li>
+				    	<a href data-toggle="modal" 
+						   data-target="#<%= comment.id%>delete">
+						   <i class="fa fa-trash-o"></i> Delete
+						</a>
+		            </li>
+			  	</ul>
+			</div>
+		<% end %>
+		
+	 	<div class="panel-body" style="margin-top: 2.5em">
+	 		<% if comment.dstatus %>
+				<div style="color: #CCC; margin-bottom: 2em;">This comment has been deleted.</div>
+	 		<% else%>
+        		<div class="well" ><%=comment.content%></div>
+               	<% end %>
+        	<br/>
+	  	</div>
+	  	<div class="panel-footer">
+	  	<div style="margin-top: 5px;">
+		  	by <%= link_to comment.user.name, comment.user %> <br/>
+		    <div style="color: #bbb;">Posted At <%= comment.created_at.time.localtime.to_formatted_s(:db)%></div>
+	    </div>
+	  </div>
+	</div>
+
+	<!-- delete comment Modal -->
+	<div class="modal fade" id="<%= comment.id %>delete" tabindex="-65" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title" id="myModalLabel">Delete comment</h4>
+	      </div>
+	      <div class="modal-body">
+	       	Are you sure?
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+	        <%= link_to [@topic, comment], method: :delete, class: "btn btn-danger" do %>
+									 Delete
+			<% end %>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<!-- edit Modal -->
+	<div class="modal fade" id="<%= comment.id %>edit" tabindex="-65" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title" id="myModalLabel">Edit comment</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<%= form_for [@topic, comment]  do |f| %>
+	       		<div class="field">
+	    		<%= f.label 'Edit Comment' %>
+	    		<%= f.text_area :content, class:"form-control" %>
+	  		</div>
+	      </div>
+	      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				<%= f.submit "Submit", class: "btn btn-primary", style: "width :auto;" %>
+	        <% end %>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+<% end %> 
 
 <!-- delete topics Modal -->
 	<div class="modal fade" id="<%=@topic.id%>deletetopicModal" tabindex="-65" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -91,7 +166,7 @@
 	  </div>
 	</div>
 
-<%= form_for([@topic, @topic.comments.build], remote: true) do |f| %>
+<%= form_for([@topic, @topic.comments.build]) do |f| %>
   <div class="field">
     <%= f.label 'Comment' %>
     <%= f.text_area :content, class:"form-control" %>

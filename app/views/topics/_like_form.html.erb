@@ -1,0 +1,8 @@
+<div class="like_form" id="likeForm">
+
+	<% if current_user.voted_for? @topic %>
+		<%= render 'like' %>
+	<% else %>
+		<%= render 'unlike' %>
+	<% end %>
+</div>
