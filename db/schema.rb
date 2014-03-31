@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140319022633) do
+ActiveRecord::Schema.define(version: 20140331055548) do
 
   create_table "boards", force: true do |t|
     t.text     "title"
@@ -26,20 +26,12 @@ ActiveRecord::Schema.define(version: 20140319022633) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "dstatus",    default: false
   end
 
   add_index "comments", ["topic_id", "user_id", "created_at"], name: "index_comments_on_topic_id_and_user_id_and_created_at"
   add_index "comments", ["topic_id"], name: "index_comments_on_topic_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
-
-  create_table "simple_captcha_data", force: true do |t|
-    t.string   "key",        limit: 40
-    t.string   "value",      limit: 6
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "simple_captcha_data", ["key"], name: "idx_key"
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"

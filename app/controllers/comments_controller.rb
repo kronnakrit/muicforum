@@ -55,7 +55,9 @@ class CommentsController < ApplicationController
   def destroy
   	@topic = Topic.find(params[:topic_id])
   	@comment.topic = @topic
-    @comment.destroy
+  	@comment.update_attributes(dstatus: true)
+  	# @comment.toggle!(:delete)
+    #@comment.destroy
     respond_to do |format|
       flash[:success] = "Comment was successfuly deleted."
       format.html { redirect_to board_topic_path(@topic.board.id, @topic.id) }

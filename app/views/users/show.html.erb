@@ -47,7 +47,9 @@
 		<div class="tab-content" id="myTab">
 			<div id="topicbar" class="tab-pane fade in active" style="margin-top:10px;">
 			      <ol class="topics" style=" padding-left: 0px; width: 650px;" id="topicbar">
+			      	<%= will_paginate @topics, param_name: 't_page', renderer: BootstrapPagination::Rails %>
 			        <%= render @topics %>
+			        <%= will_paginate @topics, param_name: 't_page', renderer: BootstrapPagination::Rails %>
 			      </ol>
 		    </div>
 
