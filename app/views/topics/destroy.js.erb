@@ -1,0 +1,7 @@
+//var str="<%= escape_javascript(render('topics/unlike')) %>";
+//var obj = document.getElementById('likeForm');
+//alert(str);
+//obj.innerHTML=str;
+$("#likeForm").html("<%= escape_javascript(render('topics/unlike')) %>")
+$("#likes").html("<%= escape_javascript(render('topics/votesize')) %>")
+$("#userlist").html("<%= escape_javascript(render('topics/userlist', users: @users)) %>")

@@ -18,6 +18,8 @@ class CommentsController < ApplicationController
   end
   # GET /comments/1/edit
   def edit
+  	@topic = Topic.find(params[:topic_id])
+  	@comments = @topic.comments
   end
 
   # POST /comments
@@ -31,7 +33,10 @@ class CommentsController < ApplicationController
       if @comment.save
       	@topic.update_attributes(:updated_at => @comment.updated_at)
       	flash[:success] = "Comment was successfuly created."
-        redirect_to board_topic_path(@topic.board.id, @topic.id)
+        respond_to do |format|
+  			format.html { redirect_to board_topic_path(@topic.board.id, @topic.id) }
+  	    	format.js
+    	end 
       else
         flash[:warning] = 'Comment is empty.'
   		redirect_to board_topic_path(@topic.board.id, @topic.id)
@@ -42,10 +47,15 @@ class CommentsController < ApplicationController
   # PATCH/PUT /comments/1.json
   def update
   	@topic = Topic.find(params[:topic_id])
+  	@comments = @topic.comments
       if @comment.update(comment_params)
-      	flash[:success] = "Comment was successfuly created."
-      	redirect_to board_topic_path(@topic.board.id, @topic.id)
+      	flash[:success] = "Comment was successfuly updated."
+      	respond_to do |format|
+      		format.html{ redirect_to board_topic_path(@topic.board.id, @topic.id) }
+  	    	format.js
+    	end 
       else
+      	flash[:warning] = 'Comment cannot be updated.'
       	redirect_to board_topic_path(@topic.board.id, @topic.id)
       end
   end
@@ -61,7 +71,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       flash[:success] = "Comment was successfuly deleted."
       format.html { redirect_to board_topic_path(@topic.board.id, @topic.id) }
-      format.json { head :no_content }
+      format.js
     end
   end
 

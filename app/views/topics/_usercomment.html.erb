@@ -1,7 +1,7 @@
 <% @count = 0 %>
 <% @topic.comments.each do |comment| %>
 	<% @count = @count + 1 %>
-	<div class="panel panel-default">
+	<div class="panel panel-default" id="comment-<%= comment.id%>">
 		<div id="comment">
 			Comment #<%= @count %>
 		</div>
@@ -13,13 +13,13 @@
 			 	<ul class="dropdown-menu" role="menu">
 				    <li>
 						<a href data-toggle="modal" 
-						   data-target="#<%= comment.id %>edit"
+						   data-target="#<%= comment.id %>edit">
 						   <i class="fa fa-pencil"></i> Edit
 						</a>
 				    </li>
 				    <li>
 				    	<a href data-toggle="modal" 
-						   data-target="#<%= comment.id%>delete">
+						   data-target="#<%= comment.id %>delete">
 						   <i class="fa fa-trash-o"></i> Delete
 						</a>
 		            </li>
@@ -29,10 +29,10 @@
 		
 	 	<div class="panel-body" style="margin-top: 2.5em">
 	 		<% if comment.dstatus %>
-				<div style="color: #CCC; margin-bottom: 2em;">This comment has been deleted.</div>
+			<div style="color: #CCC; margin-bottom: 2em;">This comment has been deleted.</div>
 	 		<% else%>
-        		<div class="well" ><%=comment.content%></div>
-               	<% end %>
+        	<div class="well" ><%=comment.content%></div>
+            <% end %>
         	<br/>
 	  	</div>
 	  	<div class="panel-footer">
@@ -56,7 +56,7 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-	        <%= link_to [@topic, comment], method: :delete, class: "btn btn-danger" do %>
+	        <%= link_to [@topic, comment], method: :delete, remote: true, class: "btn btn-danger" do %>
 									 Delete
 			<% end %>
 	      </div>
@@ -73,7 +73,7 @@
 	        <h4 class="modal-title" id="myModalLabel">Edit comment</h4>
 	      </div>
 	      <div class="modal-body">
-	      	<%= form_for [@topic, comment]  do |f| %>
+	      	<%= form_for [@topic, comment], remote: true  do |f| %>
 	       		<div class="field">
 	    		<%= f.label 'Edit Comment' %>
 	    		<%= f.text_area :content, class:"form-control" %>
@@ -86,5 +86,6 @@
 	      </div>
 	    </div>
 	  </div>
-	</div>
+</div>
 <% end %>
+ 

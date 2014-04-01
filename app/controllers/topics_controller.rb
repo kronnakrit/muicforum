@@ -75,7 +75,10 @@ end
 
     if current_user && @topic.save
   		flash[:success] = "Topic was successfuly created."
-  		redirect_to :controller => 'topics', :action => 'show', :id => @topic.id 
+  		respond_to do |format|
+  			format.html { redirect_to :controller => 'topics', :action => 'show', :id => @topic.id }
+  	    	format.js
+    	end 
   	else
   		render action: "new"
   	end
