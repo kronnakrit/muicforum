@@ -237,7 +237,7 @@
 }
 
 a#post-link:link {
-	color: #000000; 
+	color: #1f56b2; 
 	text-decoration: none; 
 }
 a#post-link:active {
@@ -436,9 +436,8 @@ body {
 
 .backgroundimg{
 	display: block;
-	background-image: url('bg.png');
-	-webkit-filter: blur(1px);
-	-webkit-filter: opacity(30%);
+	/*background-image: url('bg2.png');*/
+	background: #e0e0e0;
     width:100%;
     height:100%;
     z-index:0;

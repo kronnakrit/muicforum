@@ -7,6 +7,10 @@ class BoardsController < ApplicationController
     @boards = Board.all
   end
 
+  def boardpanel
+  	@boards = Board.all
+  end
+
   # GET /boards/1
   # GET /boards/1.json
   def show
@@ -32,8 +36,7 @@ class BoardsController < ApplicationController
         flash[:success] = "Board was successfully created"
         redirect_to boardpanel_path
       else
-        format.html { render action: 'new' }
-        format.json { render json: @board.errors, status: :unprocessable_entity }
+        render 'new' 
       end
   end
 
@@ -44,7 +47,7 @@ class BoardsController < ApplicationController
         flash[:success] = "Board was successfully updated."
         redirect_to boardpanel_path
       else
-        
+        render 'edit'
       end
   end
 
@@ -55,9 +58,13 @@ class BoardsController < ApplicationController
     		topic.keyword_list.remove(topic.keyword_list, parse: true)
     		topic.save
     end
+    @boards = Board.all
     if @board.destroy
  		flash[:success] = "Board was successfully deleted"
- 		redirect_to boardpanel_path
+ 		respond_to do |format|
+      		format.html { redirect_to boardpanel_path }
+     		format.js
+    	end 
     end
   end
 

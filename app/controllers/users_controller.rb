@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def index
-  	@users = User.paginate(per_page: 15,page: params[:page])
+  	@users = User.paginate(per_page: 15,page: params[:page]).order('created_at desc')
   end
   
   def create
