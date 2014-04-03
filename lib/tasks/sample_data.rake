@@ -18,6 +18,11 @@ namespace :db do
   	end
 
   	Board.create!(title: "General", subtitle: "Talk today, talk to us!")
+  	Board.create!(title: "BBA", subtitle: "IB, Finance, Marketing, IS, BE")
+  	Board.create!(title: "Science", subtitle: "FS, Biology, Chemistry, Physics, AM, EN, CS")
+  	Board.create!(title: "FAA", subtitle: "EM, FP, TP, CDP")
+  	Board.create!(title: "Social Science", subtitle: "Internation Studies, Modern World History, Southeast Asian Studies")
+  	Board.create!(title: "Computer Engineering", subtitle: "About computer hardware and computer programming.")
 
       users = User.all(limit: 6)
 	50.times do

@@ -2,7 +2,7 @@ class TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
 
   def search
-  	if(params[:search])
+  	if(params[:search] && params[:search] != '')
   		@topics = Topic.search(params[:search]).order("updated_at DESC").paginate(per_page: 15, page: params[:page])
   	end
   end

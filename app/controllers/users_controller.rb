@@ -4,8 +4,9 @@ class UsersController < ApplicationController
 	before_action :admin_user, only: :destroy
 
   def destroy
-  	@users = User.paginate(per_page: 15,page: params[:page])
+  	@users = User.paginate(per_page: 15,page: params[:page]).order('created_at desc')
   	@user = User.find(params[:id])
+  	@admins = User.where("admin = ?", true).paginate(per_page: 15,page: params[:page])
   	@user.destroy
   	flash[:success] = "User deleted."
   	respond_to do |format|
@@ -16,6 +17,7 @@ class UsersController < ApplicationController
 
   def index
   	@users = User.paginate(per_page: 15,page: params[:page]).order('created_at desc')
+  	@admins = User.where("admin = ?", true).paginate(per_page: 15,page: params[:page])
   end
   
   def create
@@ -60,11 +62,13 @@ class UsersController < ApplicationController
   end
 
   def usersearch
-  	if(params[:usersearch])
+    if(params[:usersearch] && params[:usersearch] != '')
 	  	respond_to do |format|
-	      format.html { @users = User.usersearch(params[:usersearch]).paginate(per_page: 15, page: params[:page]) }
+	      format.html { @users = User.usersearch(params[:usersearch]).paginate(per_page: 15, page: params[:page]).order('created_at desc') }
 	      format.js
 	    end 
+    else
+    	redirect_to users_url
     end
   end
 

@@ -10,7 +10,7 @@
   </tr>
 <% if current_user.find_voted_items.any? %>
 	<% current_user.find_voted_items.each do |topic| %>
-		<% if topic.board%>
+		<% if topic.board %>
 			<tr>
 			    <td>
 			      <div id="post-link"><%= link_to topic.title, board_topic_path(topic.board, topic), id: "post-link"%></div>
